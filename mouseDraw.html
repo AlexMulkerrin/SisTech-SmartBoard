@@ -1,0 +1,68 @@
+<meta charset="utf-8">
+<html>
+<head>
+<script>
+// INITIALISATION
+window.onload = loadProgram;
+function loadProgram() {
+	var program = new programObject("MouseCanvas");	
+	program.player = new playerObject(program.canvas);
+	drawScene(program);
+	updateProgram(program);
+}
+//OBJECTS
+function programObject(canvasName) {
+	this.canvasName = canvasName;
+	this.canvas = document.getElementById(canvasName);
+	this.canvas.width = window.innerWidth;
+	this.canvas.height = window.innerHeight;
+	this.canvas.ctx = this.canvas.getContext("2d");
+	this.refreshDelay=50;
+	this.running=true;
+}
+
+function playerObject(canvas) {
+	this.pos = {x:100,y:100};
+	this.keys = {};
+	var t=this; 
+	/*document.onkeydown = function(e) { 
+		if (e.target.tagName != "INPUT" ) { // needed?
+			t.keyDown(e.keyCode);
+			//return false;
+		}	
+	}*/
+	canvas.onmousemove = function(e) { 
+		t.onMouseEvent(e.layerX, e.layerY);
+	}
+}
+// Hook for mouse input.
+playerObject.prototype.onMouseEvent = function(x, y) {
+	this.pos.x=x;
+	this.pos.y=y;
+}
+
+// UPDATING
+function updateProgram(p) {
+	//checkProgramFlags(p,p.player);
+	//if (p.running) {
+	//	p.player.update();	
+	//}
+	drawScene(p);
+	setTimeout(function(){updateProgram(p)},p.refreshRate);
+}
+
+// GRAPHICS
+function drawScene(p) {
+	p.canvas.ctx.fillStyle="#000000";
+	p.canvas.ctx.fillRect(0,0,50,14);
+	p.canvas.ctx.fillStyle="#ff0000";
+	p.canvas.ctx.fillRect(p.player.pos.x,p.player.pos.y,10,10);
+	p.canvas.ctx.fillText(p.player.pos.x+","+p.player.pos.y,10,10);
+}
+
+</script>
+</head>
+<body>
+<canvas id="MouseCanvas" style="position:absolute;">canvas</canvas>
+</body>
+</html>
