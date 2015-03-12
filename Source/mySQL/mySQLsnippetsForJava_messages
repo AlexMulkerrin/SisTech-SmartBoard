@@ -1,41 +1,20 @@
-ALL NOT-YET COMPLETED REMINDERS FOR DISPLAY IN JAVA, DECLARE "userId" parameter, int(8) BEFORE CALL
-====================================================================================================
-BUT FOR NOW, ALWAYS SET USERID TO 1 AS THE ADMIN SCREEN IS WAY DOWN THE PRIORITY LIST":
-=======================================================================================
-SELECT rem_table_key, uid, reminder_date, reminder_time_by, reminder_text, reminder_task_completed
-FROM reminders
-WHERE s_uid =userId
-AND reminder_task_completed =0
-ORDER BY reminder_date ASC , reminder_time_by ASC 
-LIMIT 0 , 30
+RETRIEVE ALL MESSAGES IN A STREAM 
+=================================
+SELECT message_stream, message_type, s_uid, uid, message_number, image_message_path, typed_message_text, message_timestamp
+FROM messages
+WHERE s_uid = sUserId
+AND uid = userID
+AND message_Stream = messageStream
+AND message_timestamp = todaysDate
+ORDER BY message_number
 
-INSERT STATEMENT FOR NEW REMINDERS
+INSERT STATEMENT FOR IMAGE MESSAGE 
 ==================================
-"reminderDate" parameter must be in format yyyymmdd
-"reminderTimeBy" parameter must be in format hhmmss
-"reinderText" should be string or long text type
-"reminder_task_completed" should be integer, should be set to 0 ("not completed") for new tasks inserted
+"messageStream", integer, should be the same for all messages in the conversation
+"sUserId", integer, should be the same for all messages in the conversation, hardcode to 1 in prototype
+"userId",  integer, should be the same for all messages in the conversation, hardcode to 1 in prototype
+"imageMessagePath" parameter a string containing typed response to supported user's message 
+"message_type" column set to 'I' to indicate handwritten message
 
-INSERT INTO messages (s_uid, uid, image_message_path)
-VALUES (1, 1, 'images/joansmith/img1.jpg')
-
-INSERT INTO reminders (uid, reminder_date, reminder_time_by, reminder_text, reminder_task_completed)
-VALUES (1, reminderDate, reminderTimeBy, reminderText, 0)
-
-UPDATE STATMENT FOR INDIVIDUALLY PUSHED MESSAGE UPDATE
-=======================================================
-"reminderDate" parameter must be in format yyyymmdd
-"reminderTimeBy" parameter must be in format hhmmss
-"reinderText" should be string or long text type
-"reminderTaskCompleted" should be integer, should be set to 0 ("not completed") or 1 "completed" for tasks being updated
-"remTableKey" should be the key of the MESSAGE being updated 
-
-UPDATE reminders 
-set reminder_date=reminderDate , reminder_time_by=reminderTime, reminder_text=reminderText, reminder_task_completed=reminderTaskCompleted
-WHERE rem_table_key=remTableKey
-
-DELETE STATMENT FOR INDIVIDUALLY PUSHED MESSAGE UPDATE
-=======================================================
-"remTableKey" should be the key of the reminder being deleted 
-
-DELETE FROM reminders WHERE rem_table_key=remTableKey
+INSERT INTO messages( message_stream, message_type, s_uid, uid, image_message_path ) 
+VALUES ( $messageStream, "I", sUserId, userId, imageMessagePath )
