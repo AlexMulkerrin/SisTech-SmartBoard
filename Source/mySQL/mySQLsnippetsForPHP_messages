@@ -53,3 +53,64 @@ if ($result->num_rows > 0) {
 }
 $conn->close();
 ?>
+
+INSERT STATEMENT FOR TEXTUAL MESSAGE REPLIES
+====================================================================
+"$messageStream", integer, should be the same for all messages in the conversation
+"$sid", integer, should be the same for all messages in the conversation, harcode to 1 in prototype
+"$userid",  integer, should be the same for all messages in the conversation, harcode to 1 in prototype
+"$typedMessageText" parameter a string containing typed response to supported user's message 
+"message_type" column set to 'T' to indicate textual/typed message
+
+<?php
+$servername = "mysql.abdn.ac.uk";
+$port = 3306;
+$username = "t02hah14";
+$password = "sistech";
+$dbname = "t02hah14_sistech";
+$typedMessageText="";
+
+// Create connection and read tasks
+$conn = new mysqli($servername, $port, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+} 
+
+$sql = "INSERT INTO messages( message_stream, message_type, s_uid, uid, typed_message_text ) VALUES ( 1, "T", 1, 1, $typedMessageText )";
+$result = $conn->query($sql);
+$conn->close();
+?>
+
+
+RETRIEVE ALL MESSAGES IN A STREAM 
+=================================
+<?php
+$servername = "mysql.abdn.ac.uk";
+$port = 3306;
+$username = "t02hah14";
+$password = "sistech";
+$dbname = "t02hah14_sistech";
+$typedMessageText="";
+
+// Create connection and read tasks
+$conn = new mysqli($servername, $port, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+} 
+
+$sql = "SELECT message_stream, message_type, s_uid, uid, message_number, image_message_path, typed_message_text, message_timestamp
+FROM messages WHERE s_uid = 1 AND uid = 1 AND message_Stream = $messageStream AND message_timestamp = $todays_date ORDER BY message_number ";
+$result = $conn->query($sql);
+if ($result->num_rows > 0) {
+    // output data of each row
+    while($row = $result->fetch_assoc()) {
+        echo $task_no.". ".$row["reminder_time_by"]. "  " . $row["reminder_text"]. "<input type="checkbox" name="complete" value="Complete? ">" . "<br>";
+    }
+} else {
+    echo "0 results";
+}
+$conn->close();
+
+?>
