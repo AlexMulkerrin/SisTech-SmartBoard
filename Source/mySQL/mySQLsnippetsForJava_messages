@@ -16,22 +16,25 @@ INSERT STATEMENT FOR NEW REMINDERS
 "reinderText" should be string or long text type
 "reminder_task_completed" should be integer, should be set to 0 ("not completed") for new tasks inserted
 
+INSERT INTO messages (s_uid, uid, image_message_path)
+VALUES (1, 1, 'images/joansmith/img1.jpg')
+
 INSERT INTO reminders (uid, reminder_date, reminder_time_by, reminder_text, reminder_task_completed)
 VALUES (1, reminderDate, reminderTimeBy, reminderText, 0)
 
-UPDATE STATMENT FOR INDIVIDUALLY PUSHED REMINDER UPDATE
+UPDATE STATMENT FOR INDIVIDUALLY PUSHED MESSAGE UPDATE
 =======================================================
 "reminderDate" parameter must be in format yyyymmdd
 "reminderTimeBy" parameter must be in format hhmmss
 "reinderText" should be string or long text type
 "reminderTaskCompleted" should be integer, should be set to 0 ("not completed") or 1 "completed" for tasks being updated
-"remTableKey" should be the key of the reminder being updated 
+"remTableKey" should be the key of the MESSAGE being updated 
 
 UPDATE reminders 
 set reminder_date=reminderDate , reminder_time_by=reminderTime, reminder_text=reminderText, reminder_task_completed=reminderTaskCompleted
 WHERE rem_table_key=remTableKey
 
-DELETE STATMENT FOR INDIVIDUALLY PUSHED REMINDER UPDATE
+DELETE STATMENT FOR INDIVIDUALLY PUSHED MESSAGE UPDATE
 =======================================================
 "remTableKey" should be the key of the reminder being deleted 
 
