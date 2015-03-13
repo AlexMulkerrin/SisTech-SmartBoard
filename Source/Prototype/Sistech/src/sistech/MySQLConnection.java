@@ -30,7 +30,6 @@ public class MySQLConnection
         Class.forName("com.mysql.jdbc.Driver");
 
         //STEP 3: Open a connection
-        System.out.println("Connecting to database...");
         conn = DriverManager.getConnection(DB_URL,USER,PASS);
       
      
@@ -47,7 +46,7 @@ public class MySQLConnection
     return conn;
     }//end main
    
-   public static ResultSet stmtQuery(Connection conn, String query)
+   public static ResultSet stmtGetQuery(Connection conn, String query)
    {
        rs = null;
        st = null;
@@ -63,6 +62,21 @@ public class MySQLConnection
        }
        
        return rs;
+   }
+   
+   public static void stmtAmmendQuery(Connection conn, String query)
+   {
+       st = null;
+       
+       try
+       {
+            st = conn.createStatement();
+            st.executeUpdate(query);
+       }
+       catch(SQLException ex)
+       {
+           ex.printStackTrace();
+       }
    }
    
    public static void connDisconnect(Connection conn)
