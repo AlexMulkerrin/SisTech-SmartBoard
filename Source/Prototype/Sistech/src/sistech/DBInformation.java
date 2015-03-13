@@ -39,7 +39,7 @@ public class DBInformation
                 System.out.println(rs.getDate("reminder_date").toString());
                 while( rs.next())
                 {
-                        reminders.add(rs.getDate("reminder_date").toString(), rs.getString("reminder_text"));
+//                        reminders.add(rs.getDate("reminder_date").toString(), rs.getString("reminder_text"));
                         reminders.add(new ArrayList<String>());
                 }
                 for(int i=0; i <reminders.size(); i++)

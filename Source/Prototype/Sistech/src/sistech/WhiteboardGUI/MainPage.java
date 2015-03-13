@@ -1,141 +1,243 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/*  Basic canvas painter Demo
+*   author Alex Mulkerrin
+*   date 12/3/15 
+*/
 package sistech.WhiteboardGUI;
 
-/**
- *
- * @author prino_000
- */
-
-import javax.swing.*;
-import javax.swing.BoxLayout;
 import java.awt.*;
+import java.awt.event.*;
 import java.util.*;
+import javax.swing.*;
 import javax.swing.border.*;
-public class MainPage extends JFrame
-{
-    public static void main(String[] args)
-    {
-        
-        JFrame mf = new JFrame();
-        mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //mf.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        mf.setUndecorated(true);
+
+
+public class MainPage {
+    // main routine running on whiteboard hardware
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater( new Runnable() {
+            @Override
+            public void run() {
+                createAndShowGUI();
+            }
+        });
+    }
+    // initialisation of top level interface container
+    private static void createAndShowGUI() {
+        System.out.println("Created GUI on EDT(event dispatch thread)? "+ SwingUtilities.isEventDispatchThread());
+        // what is it with java and repeating the same variable name over and over??
+        MainFrame mainFrame = new MainFrame();
+        //mainFrame.add(new MyPanel());
+        //mainFrame.pack();       
+    }
+}
+// fullscreen Graphical User Interface 
+class MainFrame extends JFrame {
+    public MainFrame() {
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setUndecorated(true);
         Toolkit tk = Toolkit.getDefaultToolkit();
-        mf.setSize((int) tk.getScreenSize().getWidth(), (int) tk.getScreenSize().getHeight());
-        mf.setLayout(new BorderLayout());
-        JPanel screenPanel = new JPanel();
-        screenPanel.setLayout(new BorderLayout());
-        screenPanel.setBackground(Color.white);
-        AbstractBorder brdr = new TextBubbleBorder(Color.BLACK,12,16,0);
-        screenPanel.setBorder(brdr);
-        
-        JPanel topPanel = new JPanel();
-        JPanel middlePanel = new JPanel();
-        
-        topPanel(topPanel);
-        middlePanel(middlePanel);
-        
-        screenPanel.setBackground(Color.white);
-        screenPanel.add(topPanel, BorderLayout.NORTH);
-        screenPanel.add(middlePanel, BorderLayout.CENTER);
-        mf.add(screenPanel);
-        mf.setVisible(true);
-        
+        this.setSize((int) tk.getScreenSize().getWidth(), (int) tk.getScreenSize().getHeight());
+        this.setLayout( new BorderLayout());
+        this.add(new ScreenPanel());
+        this.setVisible(true);
     }
-    
-    public static JPanel topPanel(JPanel topPanel)
-    {
-        topPanel.setLayout(new BoxLayout(topPanel, BoxLayout.X_AXIS));
-        JLabel name = new JLabel("Name");
-        topPanel.add(Box.createHorizontalGlue());
-        topPanel.add(name);
-        topPanel.add(Box.createHorizontalGlue());
-        JLabel Date = new JLabel("Date");
-        topPanel.add(Date);
-        //topPanel.add(Box.createHorizontalGlue());
-        
-        return topPanel;
+}
+// Parent panel across entire screen
+class ScreenPanel extends JPanel {
+    public ScreenPanel() {
+        this.setLayout(new BorderLayout());
+        this.setBackground(Color.white);
+        this.setBorder(new TextBubbleBorder(Color.BLACK,12,16,0));
+             
+        this.add(new TopPanel(), BorderLayout.NORTH);
+        this.add(new MiddlePanel(), BorderLayout.CENTER);
     }
-    
-    public static JPanel middlePanel(JPanel middlePanel)
-    {
-        middlePanel.setLayout(new GridLayout(1,2));
-        JPanel taskPanel = new JPanel();
-        JPanel messagePanel = new JPanel();
-        taskPanel(taskPanel);
-        messagePanel(messagePanel);
-        JScrollPane pane = new JScrollPane(taskPanel);
+}
+// Screen topline with important info: patient name and current date
+class TopPanel extends JPanel {
+    public TopPanel() {
+        this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
+        this.add(Box.createHorizontalGlue());
+        this.add(new JLabel("Name"));
+        this.add(Box.createHorizontalGlue());
+        this.add(new JLabel("Date"));
+    }
+}
+
+class MiddlePanel extends JPanel {
+    public MiddlePanel() {
+        this.setLayout(new GridLayout(1,2));
+        // alas I cannot turn this into a constructor D:
+        JScrollPane pane = new JScrollPane(new TaskPanel());
         pane.setBackground(Color.white);
         pane.setViewportBorder(null);
-        
-        AbstractBorder brdr = new TextBubbleBorder(Color.RED,4,16,0);
-        taskPanel.setBorder(brdr);
-        taskPanel.setBackground(Color.white);
-        middlePanel.add(pane);
-        middlePanel.add(messagePanel);
-        return middlePanel;
+        this.add(pane);
+        this.add(new MessagePanel());
     }
-    
-    public static JPanel taskPanel(JPanel taskPanel)
-    {
-        taskPanel.setLayout(new GridLayout(31,0));
-        taskPanel.setBackground(Color.white);
-        JPanel[] day = new JPanel[31];
+}
+
+class MessagePanel extends JPanel {
+    public MessagePanel() {
+        this.setBackground(Color.white);
+        this.add(new DrawingPanel());
+    }
+}
+
+class TaskPanel extends JPanel {
+    public TaskPanel() {
+        this.setBorder(new TextBubbleBorder(Color.RED,4,16,0));
+        this.setBackground(Color.white);
+        this.setLayout(new GridLayout(31,0));
+        DayPane[] day = new DayPane[31];
+        for (int i=0; i<31; i++) {
+            day[i] = new DayPane();
+        }
         Calendar cal = Calendar.getInstance();
         int month = cal.get(Calendar.MONTH) + 1;
         int year = cal.get(Calendar.YEAR);
-        if(month == 2)
-        {
-            for(int i = 0; i < 28; i++)
-            {
-                day[i] = task(day[i], i, month, year);
-                taskPanel.add(day[i]);
-            }
-        }
-        else if(month == 9 || month == 4 || month == 6 || month == 11)
-        {
-            for(int i = 0; i < 30; i++)
-            {
-                day[i] = task(day[i], i, month, year);
-                taskPanel.add(day[i]);
-            }
-        }
-        else
-        {
-            for(int i = 0; i < 31; i++)
-            {
-                day[i] = task(day[i], i, month, year);
-                taskPanel.add(day[i]);
-            }
-        }
-        return taskPanel;
-    }
-    
-    public static JPanel messagePanel(JPanel messagePanel)
-    {
-        messagePanel.setBackground(Color.white);
-        return messagePanel;
-    }
-    
-    public static JPanel task(JPanel task, int i, int month, int year)
-    {
         
-        task = new JPanel();
-        AbstractBorder brdr = new TextBubbleBorder(Color.BLUE,2,16,0);
-        JLabel date = new JLabel(i+1 + "-" + month + "-" + year);
+        int monthLength=31;
+        if (month ==2) {
+            monthLength=28;            
+        } else if (month == 9 || month == 4 || month == 6 || month == 11) {
+            monthLength=30;            
+        }
+        
+        for (int i=0; i<monthLength; i++) {
+            day[i].addTask(i+1,month,year); //days start at 1 not 0   
+            this.add(day[i]);
+        }
+    }
+}
+
+class DayPane extends JPanel {
+    public DayPane() {
+        //TODO set defaults?
+    }
+    
+    public void addTask(int day, int month, int year) {
+        JLabel date = new JLabel(day + "-" + month + "-" + year);
         date.setBackground(Color.white);
-        Calandar cal = Calendar.getInstance();
-        java.sql.Date dateCheck = new java.sql.Date(parsed.);
-        JLabel message = new JLabel(sistech.DBInformation.getReminder(dateCheck));
-        message.setBackground(Color.white);
-        task.add(date, BorderLayout.WEST);
-        task.add(message, BorderLayout.CENTER);
-        task.setBorder(brdr);
-                
-        return task;
+        this.add(date, BorderLayout.WEST);
+        
+        Calendar cal = Calendar.getInstance();
+        java.sql.Date dateCheck = new java.sql.Date(year, month, day);
+        String messageString = "database not yet done :("; //sistech.DBInformation.getReminder(dateCheck);
+        JLabel message = new JLabel(messageString);
+        
+        this.add(message, BorderLayout.WEST);
+        this.setBorder(new TextBubbleBorder(Color.BLUE,2,16,0));
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// old code with input hooks, incorporate into screen panel?
+class DrawingPanel extends JPanel {
+       
+    RedSquare redSquare = new RedSquare();
+       
+        
+    public DrawingPanel() {
+        setBorder(BorderFactory.createLineBorder(Color.BLACK));
+
+        addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                moveSquare(e.getX(),e.getY());
+            }
+        });
+
+        addMouseMotionListener(new MouseAdapter() {
+            @Override
+            public void mouseDragged(MouseEvent e) {
+                moveSquare(e.getX(),e.getY());
+            }
+        });          
+    }
+
+    private void moveSquare(int x, int y) {
+        //current square state, stored as final variables
+        // to avoid repeat invocations of the same methods
+        final int CURR_X = redSquare.getX();
+        final int CURR_Y = redSquare.getY();
+        final int CURR_W = redSquare.getWidth();
+        final int CURR_H = redSquare.getHeight();
+        final int OFFSET = 1;
+
+        if ((CURR_X!=x) || (CURR_Y!=y)) {
+            // the square is moving, repaint background
+            // over the old square location
+            repaint(CURR_X, CURR_Y, CURR_W+OFFSET, CURR_H+OFFSET);
+            // update coordinates
+            redSquare.setX(x);
+            redSquare.setY(y);
+            repaint(redSquare.getX(), redSquare.getY(), 
+                    redSquare.getWidth()+OFFSET, 
+                    redSquare.getHeight()+OFFSET);
+        }
+    }
+
+    @Override
+    public Dimension getPreferredSize() {
+        return new Dimension(600,900);
+    }
+    @Override
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        // draw text
+        g.drawString("This is my custom panel", 10, 20);
+        redSquare.paintSquare(g);
+    }
+}
+
+class RedSquare {
+    private int xPos = 50;
+    private int yPos = 50;
+    private int width = 20;
+    private int height = 20;
+    
+    public void setX(int xPos) {
+        this.xPos = xPos;
+    }
+    public int getX() {
+        return xPos;
+    }
+    
+    public void setY(int yPos) {
+        this.yPos = yPos;
+    }
+    public int getY() {
+        return yPos;
+    }
+    
+    public int getWidth() {
+        return width;
+    }
+    
+    public int getHeight() {
+        return height;
+    }
+    
+    public void paintSquare(Graphics g) {
+        g.setColor(Color.RED);
+        g.fillRect(xPos,yPos,width,height);
+        g.setColor(Color.BLACK);
+        g.drawRect(xPos,yPos,width,height); 
     }
 }
