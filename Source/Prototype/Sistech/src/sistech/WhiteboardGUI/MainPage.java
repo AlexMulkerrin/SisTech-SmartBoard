@@ -121,15 +121,40 @@ class DayPane extends JPanel {
         date.setBackground(Color.white);
         this.add(date, BorderLayout.WEST);
         
-        Calendar cal = Calendar.getInstance();
-        java.sql.Date dateCheck = new java.sql.Date(year, month, day);
-        String messageString = "database not yet done :("; //sistech.DBInformation.getReminder(dateCheck);
-        JLabel message = new JLabel(messageString);
+        //Calendar cal = Calendar.getInstance();
+        //java.sql.Date dateCheck = new java.sql.Date(year, month, day);
+        String dateString = "";
+        if (month < 10) {
+            if (day<10) {
+                dateString = year+"-0"+month+"-0"+day;
+            } else {
+                dateString = year+"-0"+month+"-"+day;
+            }
+        } else {
+            if (day<10) {
+                dateString = year+"-"+month+"-0"+day;
+            } else {
+                dateString = year+"-"+month+"-"+day;
+            }
+        }
+        //ArrayList reminders = sistech.DBInformation.getReminder(dateString);
         
-        this.add(message, BorderLayout.WEST);
+        String messageString ="/n";
+//        for (int i=0; i<reminders.size(); i++) {
+//            System.out.println(reminders.get(i).toString());
+//            messageString= messageString + reminders.get(i).toString() +"/n";
+//        }
+//        
+//        JLabel message = new JLabel(messageString);
+//        
+//        this.add(message, BorderLayout.CENTER);
+        this.add(date, BorderLayout.WEST);
         this.setBorder(new TextBubbleBorder(Color.BLUE,2,16,0));
     }
 }
+
+
+
 
 // old code with input hooks, incorporate into screen panel?
 class DrawingPanel extends JPanel {
