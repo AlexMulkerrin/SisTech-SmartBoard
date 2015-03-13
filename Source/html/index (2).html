@@ -1,258 +1,28 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
    <head>
-	<title>sistechALT</title>
-	<link rel="stylesheet" type="text/css" href="sistechstyle.css"/>
-
-	<link type="text/css" rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css"/>
-	
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
-  <noscript>Your browser does not support JavaScript &#33;</noscript>
+  
+	 
 </head>
 <body>
-	<div id="fb-root"></div><!-- scripts for Facebook buttons require this -->
-	<!-- page area "containers" -->
-	<div class="container">
-<script type="text/javascript">(function(d, s, id) {
-			var js, fjs = d.getElementsByTagName(s)[0];
-			if (d.getElementById(id)) return;
-			js = d.createElement(s); js.id = id;
-			js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1";
-			fjs.parentNode.insertBefore(js, fjs);
-		}(document, 'script', 'facebook-jssdk'));
-	</script>
-	
-	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];
-		if(!d.getElementById(id)){js=d.createElement(s);
-		js.id=id;js.src="https://platform.twitter.com/widgets.js";
-		fjs.parentNode.insertBefore(js,fjs);
-		}}
-		(document,"script","twitter-wjs");
-	</script>
-	
-  <noscript>Your browser does not support JavaScript &#33;</noscript>
-  
-  <style type="text/css">
-#ProfilePage
-{
-    /* Move it off the top of the page, then centre it horizontally */
-    margin: 50px auto;
-    width: 635px;
+	<div id="container">       
+<form>
+    <center><label for="username">Username:</label>
+<input type="text" id="username" name="username">
+    <br></br>
+<label for="password">Password:</label>
+<input type="password" id="password" name="password">
+<div id="lower">
+<input type="checkbox"><label for="checkbox">Keep me logged in</label>
+<input type="submit" value="Login">
+</br>
+<a href="C:\Users\ATTAH\Documents\NetBeansProjects\sitechALT\public_html\signupage.html">
+    <button type="button">Add profile</button></a></center>
+</div><!--/ lower-->
 
-/* For visibility. Delete me */
-border: 1px solid red;
-}
-
-#LeftCol
-{
-    /* Move it to the left */
-    float: left;
-
-    width: 200px;
-    text-align: center;
-
-    /* Move it away from the content */
-    margin-right: 20px;
-
-/* For visibility. Delete me */
-border: 1px solid brown;
-}
-
-#Photo
-{
-    /* Width and height of photo container */
-    width: 200px;
-    height: 200px;
-
-/* For visibility. Delete me */
-border: 1px solid green;
-}
-
-#PhotoOptions
-{
-    text-align: center;
-    width: 200px;
-
-/* For visibility. Delete me */
-border: 1px solid brown;
-}
-
-#Info
-{
-    width: 400px;
-    text-align: center;
-
-    /* Move it to the right */
-    float: right;
-
-/* For visibility. Delete me */
-border: 1px solid blue;
-}
-
-#Info strong
-{
-    /* Give it a width */
-    display: inline-block;
-    width: 100px;
-
-/* For visibility. Delete me */
-border: 1px solid orange;
-}
-
-#Info span
-{
-    /* Give it a width */
-    display: inline-block;
-    width: 250px;
-
-/* For visibility. Delete me */
-border: 1px solid purple;
-}
-</style>
-
-<div id="ProfilePage">
-    <div id="LeftCol">
-        <div id="Photo"></div>
-        <div id="ProfileOptions">
-        a
-        </div>
-    </div>
-
-    <div id="Info">
-        <p>
-            <strong>Name:</strong>
-            <span>Patrick</span>
-        </p>
-        <p>
-            <strong>Name:</strong>
-            <span>Gregg</span>
-        </p>
-        <p>
-            <strong>Name:</strong>
-            <span>Sarah</span>
-        </p>
-        <p>
-            <strong>Name:</strong>
-            <span>Micheal</span>
-        </p>
-        <p>
-            <strong>Name:</strong>
-            <span>Sasha</span>
-        </p>
-        <p>
-            <strong>Name:</strong>
-            <span>Martha</span>
-        </p>
-    </div>
-
-    <!-- Needed because other elements inside ProfilePage have floats -->
-    <div style="clear:both"></div>
+</form>
 </div>
 	
-<!-- Strapline -->
-<div class="header">
-</div>
-
-<!-- banner image, image defined and styled in SWEstyle.css -->
-<div class="banner">
-</div>
-
-						<div>
-							<table class="accordtable">
-								<tr>
-									<td colspan="2" class="accordtd"><div id="AFTERdesc"></div></td>
-								</tr>
-								<tr>
-									<td colspan="2" class="accordtd">
-									<script type = "text/javascript">
-
-// Note: Like all Javascript password scripts, this is hopelessly insecure as the user can see 
-//the valid usernames/passwords and the redirect url simply with View Source.  
-// And the user can obtain another three tries simply by refreshing the page.  
-//So do not use for anything serious!
-
-var count = 2;
-function validate() {
-var un = document.myform.username.value;
-var pw = document.myform.pword.value;
-var valid = false;
-
-var unArray = ["Patrick", "Gregg", "Sarah", "Michael" , "Smith" , "Sasha" , "Martha"];  // as many as you like - no comma after final entry
-var pwArray = ["Password1", "Password2", "Password3", "Password4", "Password5", "Password6" , "Password7"];  // the corresponding passwords;
-
-for (var i=0; i <unArray.length; i++) {
-if ((un == unArray[i]) && (pw == pwArray[i])) {
-valid = true;
-break;
-}
-}
-
-if (valid) {
-alert ("Login was successful");
-window.location = "http://www.google.com";
-return false;
-}
-
-var t = " tries";
-if (count == 1) {t = " try"}
-
-if (count >= 1) {
-alert ("Invalid username and/or password.  You have " + count + t + " left.");
-document.myform.username.value = "";
-document.myform.pword.value = "";
-setTimeout("document.myform.username.focus()", 25);
-setTimeout("document.myform.username.select()", 25);
-count --;
-}
-
-else {
-alert ("Still incorrect! You have no more tries left!");
-document.myform.username.value = "No more tries allowed!";
-document.myform.pword.value = "";
-document.myform.username.disabled = true;
-document.myform.pword.disabled = true;
-return false;
-}
-
-}
-
-</script>
-
-<form name = "myform">
-<p>ENTER USER NAME <input type="text" name="username"> ENTER PASSWORD <input type="password" name="pword">
-<input type="button" value="Check In" name="Submit" onclick= "validate()">
-</p>
-
-</form>
-									</td>
-								</tr>
-							</table>
-						</div>
-						
-					</div>
-				</div>
-			</div>
-			
-<div class="footer">
-<!-- Display Social Media buttons at left hand side of footer --> 
-	<div class="footerleft">
-	<p>
-	<!--Facebook supplied, modified to display buttons only not text-->
-	<div class="fb-like" data-href="http://homepages.abdn.ac.uk/hilary.hastings.14/SWE/SWEindex.html" data-layout="button_count" dataaction="
-like" data-show-faces="false" data-share="true"></div>
-	
-	<!--twitter supplied-->
-	<a href="https://twitter.com/share" class="twitter-share-button" data-lang="en" data-url="http://homepages.abdn.ac.uk/hilary.hastings.14/SWE/SWEindex.html" 
-	data-text="Check out the Group 5 Googld Knowledge Graph project offering" data-hashtags="example">Tweet</a>
-	</p>
-	</div>
-		
-</div>
-
-			
-		</div>
-	</div>
 </body>
 </html>
