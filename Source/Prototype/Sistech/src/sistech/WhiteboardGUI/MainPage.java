@@ -105,7 +105,7 @@ class TaskPanel extends JPanel {
         }
         
         for (int i=0; i<monthLength; i++) {
-            day[i].addTask(i+1,month,year); //days start at 1 not 0   
+            //day[i].addTask(i+1,month,year); //days start at 1 not 0   
             this.add(day[i]);
         }
     }
@@ -137,17 +137,17 @@ class DayPane extends JPanel {
                 dateString = year+"-"+month+"-"+day;
             }
         }
-        //ArrayList reminders = sistech.DBInformation.getReminder(dateString);
+        ArrayList reminders = sistech.DBInformation.getReminder(dateString);
         
         String messageString ="/n";
-//        for (int i=0; i<reminders.size(); i++) {
-//            System.out.println(reminders.get(i).toString());
-//            messageString= messageString + reminders.get(i).toString() +"/n";
-//        }
-//        
-//        JLabel message = new JLabel(messageString);
-//        
-//        this.add(message, BorderLayout.CENTER);
+        for (int i=0; i<reminders.size(); i++) {
+            System.out.println(reminders.get(i).toString());
+            messageString= messageString + reminders.get(i).toString() +"/n";
+        }
+        
+        JLabel message = new JLabel(messageString);
+        
+        this.add(message, BorderLayout.CENTER);
         this.add(date, BorderLayout.WEST);
         this.setBorder(new TextBubbleBorder(Color.BLUE,2,16,0));
     }
