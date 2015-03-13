@@ -77,6 +77,7 @@ class MiddlePanel extends JPanel {
 }
 
 class MessagePanel extends JPanel {
+    
     public MessagePanel() {
         this.setBackground(Color.white);
         this.add(new DrawingPanel());
@@ -130,23 +131,6 @@ class DayPane extends JPanel {
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // old code with input hooks, incorporate into screen panel?
 class DrawingPanel extends JPanel {
        
@@ -178,12 +162,12 @@ class DrawingPanel extends JPanel {
         final int CURR_Y = redSquare.getY();
         final int CURR_W = redSquare.getWidth();
         final int CURR_H = redSquare.getHeight();
-        final int OFFSET = 1;
+        final int OFFSET = 0;
 
         if ((CURR_X!=x) || (CURR_Y!=y)) {
             // the square is moving, repaint background
             // over the old square location
-            repaint(CURR_X, CURR_Y, CURR_W+OFFSET, CURR_H+OFFSET);
+            //repaint(CURR_X, CURR_Y, CURR_W+OFFSET, CURR_H+OFFSET);
             // update coordinates
             redSquare.setX(x);
             redSquare.setY(y);
@@ -201,7 +185,7 @@ class DrawingPanel extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         // draw text
-        g.drawString("This is my custom panel", 10, 20);
+        g.drawString("Write Here", 10, 20);
         redSquare.paintSquare(g);
     }
 }
@@ -237,7 +221,7 @@ class RedSquare {
     public void paintSquare(Graphics g) {
         g.setColor(Color.RED);
         g.fillRect(xPos,yPos,width,height);
-        g.setColor(Color.BLACK);
-        g.drawRect(xPos,yPos,width,height); 
+//        g.setColor(Color.BLACK);
+//        g.drawRect(xPos,yPos,width,height); 
     }
 }
