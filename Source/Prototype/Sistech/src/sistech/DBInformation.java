@@ -12,14 +12,12 @@ package sistech;
  */
 
 import java.sql.*;
-import java.util.ArrayList;
 
 public class DBInformation 
 {
-    public static ArrayList getReminder(String date) //Still under construction
-    {
-        ArrayList reminders = new ArrayList();
-        //Details for statement Query
+    public static String[][] getReminder(String date) 
+    { 
+        String[][] reminders = null;
         String Columns = "rem_table_key, uid, reminder_date, reminder_time_by, reminder_text, reminder_task_completed";
         String Db = "reminders";
         int S_uid = 1;
@@ -36,11 +34,19 @@ public class DBInformation
                                                         + " AND reminder_task_completed = " + TaskComplete + " ORDER BY " 
                                                         + OrderBy + " LIMIT " + Limit1 + ", " + Limit2);
             
+            rs.last();
+            int size = rs.getRow();
+            reminders = new String[size][3];
+            rs.first();
+            int i=0;
             while( rs.next())
             {
                 if( date.equals(rs.getString("reminder_date")))
                 {   
-                    reminders.add(rs.getString("reminder_text")+ ":" + rs.getString("reminder_time_by") + ":" + rs.getString("rem_table_key"));
+                    reminders[i][0] = rs.getString("reminder_text");
+                    reminders[i][1] = rs.getString("reminder_time_by");
+                    reminders[i][2] = rs.getString("rem_table_key");
+                    i++;
                 }
             }
             
