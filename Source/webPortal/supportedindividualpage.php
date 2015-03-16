@@ -14,14 +14,13 @@ and open the template in the editor.
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 </head>
 <body>
-    <form name="SendComments" action="mailto:myemail@mydomain.com&subject:form.subject&body=form.body method="get">
-          
-                              
-    <textarea name="body" id="comment"></textarea><br/></form>  </br> 
-    <input type="submit" name="submit" value="Send Message">
 <div class="container">
  <div class="innercontainer">
-  <div class="contentcontainer">
+    <form name="SendComments" action="mailto:myemail@mydomain.com&subject:form.subject&body=form.body method="get"/> 
+		<textarea name="body" id="comment"></textarea><br/>
+		<input type="submit" name="submit" value="Send Message">
+	</form>  </br> 
+	<div class="contentcontainer">
 	<div class="blurbcontainerleft">
 	<div class="blurbheader"> Reminders </div>
 	<?php
