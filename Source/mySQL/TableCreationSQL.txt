@@ -1,0 +1,40 @@
+CREATE TABLE IF NOT EXISTS `messages` (
+  `message_stream` bigint(8) NOT NULL,
+  `s_uid` bigint(8) NOT NULL,
+  `uid` bigint(8) NOT NULL,
+  `message_number` bigint(8) NOT NULL AUTO_INCREMENT,
+  `message_type` varchar(1) NOT NULL,
+  `image_message_path` varchar(265) NOT NULL,
+  `typed_message_text` longtext NOT NULL,
+  `message_timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`message_number`,`message_stream`),
+  UNIQUE KEY `message_number` (`message_number`),
+  KEY `s_uid` (`s_uid`,`uid`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COMMENT='Table to store message streams, images and text between ' AUTO_INCREMENT=5 ;
+
+CREATE TABLE IF NOT EXISTS `reminders` (
+  `rem_table_key` bigint(10) NOT NULL AUTO_INCREMENT,
+  `uid` bigint(8) NOT NULL,
+  `reminder_date` date NOT NULL,
+  `reminder_time_by` time NOT NULL,
+  `reminder_text` longtext CHARACTER SET utf16 COLLATE utf16_roman_ci NOT NULL,
+  `reminder_task_completed` smallint(1) NOT NULL,
+  `s_uid` bigint(8) NOT NULL,
+  PRIMARY KEY (`rem_table_key`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+
+
+CREATE TABLE IF NOT EXISTS `supporter` (
+  `uname` varchar(30) CHARACTER SET utf8 COLLATE utf8_roman_ci NOT NULL COMMENT 'Username of Support Network Member',
+  `uid` bigint(8) NOT NULL COMMENT 'Unique User ID of Support Network Member',
+  `u_uid` bigint(8) NOT NULL COMMENT 'Key to Supported User table',
+  PRIMARY KEY (`uid`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Details of Support Network Individual';
+
+
+CREATE TABLE IF NOT EXISTS `user` (
+  `uid` int(8) NOT NULL AUTO_INCREMENT COMMENT 'Unique user ID Supported Individual',
+  `uname` varchar(50) CHARACTER SET utf8 COLLATE utf8_roman_ci NOT NULL COMMENT 'Username Supported Individual',
+  `s_uid` int(8) NOT NULL COMMENT 'ID Support Network Member',
+  PRIMARY KEY (`uid`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
