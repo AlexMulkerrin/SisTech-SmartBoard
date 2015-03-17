@@ -1,6 +1,8 @@
 package sistech.WhiteboardGUI;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.*;
 import javax.swing.*;
 
@@ -8,7 +10,11 @@ import javax.swing.*;
  *
  * @author Alex Mulkerrin
  */
-class TaskPanel extends JPanel {
+class TaskPanel extends JPanel  implements ActionListener{
+    public String taskContent = "Message list goes here";
+    JLabel taskContainer;
+    JButton button;
+    
     public TaskPanel() {
         //this.setBorder(new TextBubbleBorder(Color.RED,4,16,0));
         setBackground(new Color(200,200,255));
@@ -34,6 +40,22 @@ class TaskPanel extends JPanel {
 //            //day[i].addTask(i+1,month,year); //days start at 1 not 0   
 //            this.add(day[i]);
 //        }
+        taskContainer = new JLabel(taskContent);
+        add(taskContainer);
+             
+        button = new JButton("UpdateTasks");
+        add(button);
+        go();
+    }
+    
+    public void go() {
+        button.addActionListener(this);
+    }
+    
+    public void actionPerformed(ActionEvent event) {
+        taskContent="UpdateFailed :(";
+        taskContainer.setText(taskContent);
+                
     }
 }
 
@@ -63,12 +85,12 @@ class DayPane extends JPanel {
                 dateString = year+"-"+month+"-"+day;
             }
         }
-        ArrayList reminders = sistech.DBInformation.getReminder(dateString);
+        String[][] reminders = sistech.DBInformation.getReminder(dateString);
         
         String messageString ="/n";
-        for (int i=0; i<reminders.size(); i++) {
-            System.out.println(reminders.get(i).toString());
-            messageString= messageString + reminders.get(i).toString() +"/n";
+        for (int i=0; i<reminders.length; i++) {
+           // System.out.println(reminders.get(i).toString());
+           // messageString= messageString + reminders.get(i).toString() +"/n";
         }
         
         JLabel message = new JLabel(messageString);
