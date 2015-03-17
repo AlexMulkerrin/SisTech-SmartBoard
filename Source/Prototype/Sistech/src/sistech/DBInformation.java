@@ -12,14 +12,13 @@ package sistech;
  */
 
 import java.sql.*;
-import java.util.ArrayList;
 
 public class DBInformation 
 {
-    public static ArrayList getReminder(String date) //Still under construction
-    {
-        ArrayList reminders = new ArrayList();
-        //Details for statement Query
+    public static String[][] getReminder(String date) 
+    { 
+        String[][] reminders = null;
+        
         String Columns = "rem_table_key, uid, reminder_date, reminder_time_by, reminder_text, reminder_task_completed";
         String Db = "reminders";
         int S_uid = 1;
@@ -35,12 +34,25 @@ public class DBInformation
             ResultSet rs = MySQLConnection.stmtGetQuery(conn, "SELECT " + Columns + " FROM " + Db + " WHERE s_uid = " + S_uid 
                                                         + " AND reminder_task_completed = " + TaskComplete + " ORDER BY " 
                                                         + OrderBy + " LIMIT " + Limit1 + ", " + Limit2);
-            
+            int size = 0;
+            while(rs.next())
+            {
+                if( date.equals(rs.getString("reminder_date")))
+                {
+                size++;
+                }
+            }
+            reminders = new String[size][3];
+            rs.first();
+            int i=0;
             while( rs.next())
             {
                 if( date.equals(rs.getString("reminder_date")))
                 {   
-                    reminders.add(rs.getString("reminder_text")+ ":" + rs.getString("reminder_time_by") + ":" + rs.getString("rem_table_key"));
+                    reminders[i][0] = rs.getString("reminder_text");
+                    reminders[i][1] = rs.getString("reminder_time_by");
+                    reminders[i][2] = rs.getString("rem_table_key");
+                    i++;
                 }
             }
             
@@ -70,8 +82,47 @@ public class DBInformation
                 
     }
     
-    public static void getMessages()
+    public static String[][] getMessages()
     {
+        String[][] messages = null;
+        String Columns = "message_stream, message_type, s_uid, uid, message_number, image_message_path"
+                            + ", typed_message_text, message_timestamp";
+        String Db = "messages";
+        int S_uid = 1;
+        int uid = 1;
+        String messageStream = "messageStream";
+        String timeStamp = "todaysDate";
+        String order = "message_number";
         
+        Connection conn = MySQLConnection.connConnect();
+        
+        try 
+        {
+            ResultSet rs = MySQLConnection.stmtGetQuery(conn, "SELECT " + Columns + " FROM " + Db + " WHERE s_uid = " + S_uid 
+                                                        + " AND uid = " + uid + " AND message_Stream = " + messageStream 
+                                                        + " AND message_timestamp = " + timeStamp + "ORDER BY " + order);
+            
+            rs.last();
+            int size = rs.getRow();
+            messages = new String[size][3];
+            rs.first();
+            int i=0;
+            while( rs.next())
+            {
+                    messages[i][0] = rs.getString("typed_message_text");
+                    messages[i][1] = rs.getString("message_timestamp");
+                    messages[i][2] = rs.getString("uid");
+                    i++;
+            }
+            
+        } catch (SQLException ex) 
+        {
+        }
+        
+        MySQLConnection.connDisconnect(conn);
+        MySQLConnection.stmtDisconnect();
+        return messages;
     }
+    
+    
 }
