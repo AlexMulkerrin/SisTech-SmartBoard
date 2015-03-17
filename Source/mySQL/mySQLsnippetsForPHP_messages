@@ -106,7 +106,15 @@ $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) {
-        echo $task_no.". ".$row["reminder_time_by"]. "  " . $row["reminder_text"]. "<input type="checkbox" name="complete" value="Complete? ">" . "<br>";
+		if($row.["message_type"]="I")
+		{
+			
+			echo $row["message_number"].". ". "<img src=$row["image_message_path"]>".$row["reminder_text"]. "<input type="checkbox" name="complete" value="Complete? ">" . "<br>";
+		}
+		else
+		{
+			echo $row["message_number"].". ".$row["typed_message_text"]. "<br>";
+		}
     }
 } else {
     echo "0 results";
