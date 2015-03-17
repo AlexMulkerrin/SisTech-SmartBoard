@@ -11,7 +11,7 @@ import javax.swing.*;
  * @author Alex Mulkerrin
  */
 class TaskPanel extends JPanel  implements ActionListener{
-    public String taskContent = "Message list goes here";
+    public String taskContent = "Task list goes here";
     JLabel taskContainer;
     JButton button;
     
