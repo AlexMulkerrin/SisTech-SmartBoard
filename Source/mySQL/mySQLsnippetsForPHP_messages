@@ -100,7 +100,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
 
-$sql = "SELECT message_stream, message_type, s_uid, uid, message_number, image_message_path, typed_message_text, message_timestamp
+$sql = "SELECT message_stream, message_type, s_uid, uid, message_number, image_message_path, typed_message_text, message_time, message_date
 FROM messages WHERE s_uid = 1 AND uid = 1 AND message_Stream = $messageStream AND message_timestamp = $todays_date ORDER BY message_number ";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
