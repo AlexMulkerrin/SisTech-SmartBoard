@@ -59,11 +59,7 @@ and open the template in the editor.
 	<div class="blurbcontainerright">
 	 <div class="blurbheader"> Messages </div>
 	<?php
-		$servername = "mysql.abdn.ac.uk";
-		$username = "t02hah14_sistech";
-		$password = "sistech";
-		$dbname = "t02hah14_sistech";
-		// Create connection and read tasks
+		// Already connected so just read tasks
 		$sql = "SELECT message_stream, message_type, s_uid, uid, message_number, image_message_path, typed_message_text, message_time, message_date
 		FROM messages WHERE s_uid = 1 
 		AND uid = 1 
@@ -77,13 +73,11 @@ and open the template in the editor.
 			while($row = $result->fetch_assoc()) {
 				if($row["message_type"]=="I")
 				{
-				//	echo $row["message_number"].". ". "<img src=$row["image_message_path"]>".$row["reminder_text"]. "<input type="checkbox" name="complete" value="Complete? ">" . "<br>";
-				
-					echo $row["message_number"];
+					echo '<img src=' . $row['image_message_path'] . ' width="60" height="60" alt="word" />'. "<br><br>";
 				}
 				else
 				{
-					echo $row["message_number"].". ".$row["typed_message_text"]. "<br>";
+					echo $row["typed_message_text"]. "<br><br>";
 				}
 			}
 		} else {
