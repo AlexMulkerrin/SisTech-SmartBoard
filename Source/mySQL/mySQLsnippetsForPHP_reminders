@@ -53,3 +53,8 @@ if ($result->num_rows > 0) {
 }
 $conn->close();
 ?>
+
+INSERT FOR NEW REMINDERS
+========================
+INSERT INTO reminders (uid, reminder_date, reminder_time_by, reminder_text, reminder_task_completed, s_uid)
+VALUES (1, $reminder_date, $reminder_time_by, $reminder_text, 0, 1)

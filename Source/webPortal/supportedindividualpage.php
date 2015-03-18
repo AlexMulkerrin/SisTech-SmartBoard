@@ -54,6 +54,19 @@ and open the template in the editor.
 		echo "0 results";
 		}
 	?>
+	
+	<form name="reminders" method="post" onsubmit=""
+		action="databaseOps.php">
+		<fieldset>
+			<legend>New Reminder</legend>
+			<p></p>Date:  <input type="number" name="reminder_date" id="reminder_date" size="8"/><br/>
+			<p></p>Time:  <input type="number" name="reminder_time" id="reminder_time" size="6"/><br/>
+			Reminder: <textarea name="reminder_text" id="reminder_text" rows="8" cols="58"></textarea>					
+			<input type="submit" class="submitreset" id="submit" name="submit" value="Add Reminder"/>
+			<input type="reset" class="submitreset" id ="reset" name="reset" value="Reset"/>
+		</fieldset>
+	</form>
+
 	</div>
 
 	<div class="blurbcontainerright">
@@ -112,6 +125,13 @@ and open the template in the editor.
 		} else {
 			echo "0 results";
 		}
+	?>
+	
+
+
+	
+	<?php
+		//close database
 		$conn->close();
 	?>
 >>>>>>> origin/master
