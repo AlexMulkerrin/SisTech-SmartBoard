@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 <!DOCTYPE html ...>
+=======
+>>>>>>> origin/master
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta charset="utf-8">
@@ -7,7 +10,6 @@
 <body style="color:blue;background-color:red">
 >
 <table> </table>
-<
 <table id="tblForm">
 <tbody>
     <center>
@@ -47,7 +49,7 @@
 </tr>
 <tr>
 <td align="center" colspan="2" ,="">
-    <a href="C:\Users\ATTAH\Documents\NetBeansProjects\sitechALT\public_html\supportedindividualpage.html">
+    <a href="supportedindividualpage.php">
         <input type="submit" value="Add profile"></a></center>
 </td>
 </tr>

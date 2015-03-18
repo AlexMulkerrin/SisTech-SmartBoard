@@ -3,16 +3,20 @@ package sistech.WhiteboardGUI;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.BorderFactory;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 /**
  *
  * @author Alex Mulkerrin
  */
-public class DrawingPanel extends JPanel {
+public class DrawingPanel extends JPanel implements ActionListener {
+    
+    JButton clearButton;
+    JButton sendButton;
        
     RedSquare redSquare = new RedSquare();
        
@@ -20,6 +24,10 @@ public class DrawingPanel extends JPanel {
     public DrawingPanel() {
         setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
+        clearButton = new JButton("Clear");
+        add(clearButton);
+        go();
+        
         addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
@@ -35,6 +43,18 @@ public class DrawingPanel extends JPanel {
         });          
     }
 
+    public void go() {
+        clearButton.addActionListener(this);
+    }
+    
+    @Override
+    public void actionPerformed(ActionEvent event) {
+        String message="UpdateFailed :(";
+        clearButton.setText(message);
+                
+    }
+    
+    
     private void moveSquare(int x, int y) {
         //current square state, stored as final variables
         // to avoid repeat invocations of the same methods
@@ -65,14 +85,14 @@ public class DrawingPanel extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         // draw text
-        g.drawString("Write Here", 10, 20);
+        //g.drawString("Write Here", 10, 20);
         redSquare.paintSquare(g);
     }
 }
 
 class RedSquare {
-    private int xPos = 50;
-    private int yPos = 50;
+    private int xPos = -50;
+    private int yPos = -50;
     private int width = 20;
     private int height = 20;
     

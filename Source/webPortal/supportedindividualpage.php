@@ -53,13 +53,13 @@ and open the template in the editor.
 		} else {
 		echo "0 results";
 		}
-		$conn->close();
 	?>
 	</div>
 
 	<div class="blurbcontainerright">
 	 <div class="blurbheader"> Messages </div>
 	<?php
+<<<<<<< HEAD
 		$servername = "mysql.abdn.ac.uk";
 		$username = "t02hah14_sistech";
 		$password = "sistech";
@@ -87,6 +87,34 @@ and open the template in the editor.
 
                     ?>
                   	
+=======
+		// Already connected so just read tasks
+		$sql = "SELECT message_stream, message_type, s_uid, uid, message_number, image_message_path, typed_message_text, message_time, message_date
+		FROM messages WHERE s_uid = 1 
+		AND uid = 1 
+		AND message_Stream = 1
+		ORDER BY message_number
+		LIMIT 0,30";
+
+		$result = $conn->query($sql);
+		if ($result->num_rows > 0) {
+			// output data of each row
+			while($row = $result->fetch_assoc()) {
+				if($row["message_type"]=="I")
+				{
+					echo '<img src=' . $row['image_message_path'] . ' width="60" height="60" alt="word" />'. "<br><br>";
+				}
+				else
+				{
+					echo $row["typed_message_text"]. "<br><br>";
+				}
+			}
+		} else {
+			echo "0 results";
+		}
+		$conn->close();
+	?>
+>>>>>>> origin/master
 	</div>
             
   </div>
