@@ -72,22 +72,23 @@ and open the template in the editor.
 		if ($conn->connect_error) {
 		die("Connection failed: " . $conn->connect_error);
 		}
-		$sql = "SELECT rem_table_key, uid, reminder_date, reminder_time_by, reminder_text, reminder_task_completed FROM reminders
-		WHERE s_uid =$userid AND reminder_task_completed =0
-		ORDER BY reminder_date ASC , reminder_time_by ASC
-		LIMIT 0 , 30";
-		$result = $conn->query($sql);
-		if ($result->num_rows > 0) {
-		// output data of each row
-		while($row = $result->fetch_assoc()) {
-		echo $task_no.". ".$row["reminder_time_by"]. " " . $row["reminder_text"]."<br>";
-		}
-		} else {
-			echo "0 results";
-			}
-			$conn->close();
-	?>
+	        $sql = "SELECT message_stream, message_type, s_uid, uid, message_number, image_message_path, typed_message_text, message_timestamp
+              FROM messages WHERE s_uid = 1 AND uid = 1 AND message_Stream = $messageStream AND message_timestamp = $todays_date ORDER BY message_number ";
+              $result = $conn->query($sql);
+              if ($result->num_rows > 0) {
+                   // output data of each row
+                   while($row = $result->fetch_assoc()) {
+                          echo $task_no.". ".$row["reminder_time_by"]. "  " . $row["reminder_text"]. "<input type="checkbox" name="complete" value="Complete? ">" . "<br>";
+                        }
+                    } else {
+                    echo "0 results";
+                    }
+                    $conn->close();
+
+                    ?>
+                  	
 	</div>
+            
   </div>
  </div>
 </div>

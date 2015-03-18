@@ -1,10 +1,11 @@
-!DOCTYPE html>
+<!DOCTYPE html ...>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta charset="utf-8">
 <title> Form Validation</title>
 </head>
-<body>
+<body style="color:blue;background-color:red">
+>
 <table> </table>
 <
 <table id="tblForm">
