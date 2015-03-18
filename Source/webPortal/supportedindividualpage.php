@@ -53,7 +53,6 @@ and open the template in the editor.
 		} else {
 		echo "0 results";
 		}
-		$conn->close();
 	?>
 	</div>
 
@@ -64,18 +63,23 @@ and open the template in the editor.
 		$username = "t02hah14_sistech";
 		$password = "sistech";
 		$dbname = "t02hah14_sistech";
-		$userid=1;
-		$task_no=1;
 		// Create connection and read tasks
 		$sql = "SELECT message_stream, message_type, s_uid, uid, message_number, image_message_path, typed_message_text, message_time, message_date
-		FROM messages WHERE s_uid = 1 AND uid = 1 AND message_Stream = $messageStream AND message_timestamp = $todays_date ORDER BY message_number ";
+		FROM messages WHERE s_uid = 1 
+		AND uid = 1 
+		AND message_Stream = 1
+		ORDER BY message_number
+		LIMIT 0,30";
+
 		$result = $conn->query($sql);
 		if ($result->num_rows > 0) {
 			// output data of each row
 			while($row = $result->fetch_assoc()) {
-				if($row.["message_type"]=="I")
+				if($row["message_type"]=="I")
 				{
-					echo $row["message_number"].". ". "<img src=$row["image_message_path"]>".$row["reminder_text"]. "<input type="checkbox" name="complete" value="Complete? ">" . "<br>";
+				//	echo $row["message_number"].". ". "<img src=$row["image_message_path"]>".$row["reminder_text"]. "<input type="checkbox" name="complete" value="Complete? ">" . "<br>";
+				
+					echo $row["message_number"];
 				}
 				else
 				{
