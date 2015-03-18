@@ -73,7 +73,7 @@ and open the template in the editor.
 		if ($result->num_rows > 0) {
 			// output data of each row
 			while($row = $result->fetch_assoc()) {
-				if($row.["message_type"]="I")
+				if($row.["message_type"]=="I")
 				{
 					echo $row["message_number"].". ". "<img src=$row["image_message_path"]>".$row["reminder_text"]. "<input type="checkbox" name="complete" value="Complete? ">" . "<br>";
 				}

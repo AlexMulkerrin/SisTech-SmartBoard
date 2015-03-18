@@ -46,7 +46,7 @@
 </tr>
 <tr>
 <td align="center" colspan="2" ,="">
-    <a href="C:\Users\ATTAH\Documents\NetBeansProjects\sitechALT\public_html\supportedindividualpage.html">
+    <a href="supportedindividualpage.php">
         <input type="submit" value="Add profile"></a></center>
 </td>
 </tr>

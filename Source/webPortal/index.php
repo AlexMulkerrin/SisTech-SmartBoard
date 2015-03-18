@@ -9,7 +9,7 @@
 	<div id="container">       
 <form>
     <center><label for="username">Username:</label>
-<input type="text" id="username" name="username">
+		<input type="text" id="username" name="username">
     <br></br>
 <label for="password">Password:</label>
 <input type="password" id="password" name="password">
@@ -17,11 +17,12 @@
 <input type="checkbox"><label for="checkbox">Keep me logged in</label>
 <input type="submit" value="Login">
 </br>
-<a href="C:\Users\ATTAH\Documents\NetBeansProjects\sitechALT\public_html\signupage.html">
+<a href="signupage.php">
     <button type="button">Add profile</button></a></center>
 </div><!--/ lower-->
 
-</form>
+</form>
+
 </div>
 	
 </body>
