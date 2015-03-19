@@ -64,7 +64,7 @@ class TaskPanel extends JPanel  implements ActionListener, Runnable {
     public void run() {
         while (true) {
             try {
-            String[][] reminders = sistech.DBInformation.getReminder("2015-05-15");
+            String[][] reminders = sistech.DBInformation.getReminder("2015-05-01");
             String messageString ="/n";
             for (int i=0; i<reminders.length; i++) {
                 for (int j=0; j<reminders.length; j++) {

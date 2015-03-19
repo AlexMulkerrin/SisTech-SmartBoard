@@ -46,12 +46,12 @@ class MessagePanel extends JPanel implements ActionListener, Runnable  {
     public void run() {
         while (true) {
             try {
-            String[][] reminders = sistech.DBInformation.getReminder("2015-05-15");
-            String messageString ="/n";
+            String[][] reminders = sistech.DBInformation.getMessages();
+            String messageString ="\n";
             for (int i=0; i<reminders.length; i++) {
                 for (int j=0; j<reminders.length; j++) {
                     System.out.println(reminders[i][j].toString());
-                    messageContent= messageContent + reminders[i][j].toString() +"/n";
+                    messageContent= messageContent + reminders[i][j].toString() +"\n";
                 }
             }
             } catch (Exception ex){
@@ -60,7 +60,7 @@ class MessagePanel extends JPanel implements ActionListener, Runnable  {
 
             messageContainer.setText(messageContent);
             try {
-                Thread.sleep(1000);
+                Thread.sleep(6000);
             } catch (InterruptedException e) {
                 System.out.println("Interrupted: " + e.getMessage());
             }
