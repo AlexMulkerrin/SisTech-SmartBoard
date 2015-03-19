@@ -95,6 +95,19 @@ and open the template in the editor.
                     echo "0 results";
                     }
    ?>
+   
+
+   
+   <form name="message" method="post" onsubmit=""
+		action="writeMessage.php"> 
+		<fieldset>
+			<legend>New Message</legend>
+		
+			Message: <textarea name="message_text" id="message_text" rows="8" cols="58"></textarea>					
+			<input type="submit" class="submitreset" id="submit" name="submit" value="Add Message"/>
+			<input type="reset" class="submitreset" id ="reset" name="reset" value="Reset"/>
+		</fieldset>
+	</form> 
 	
 	<?php
 		//close database
