@@ -84,45 +84,67 @@ public class DBInformation
     
     public static String[][] getMessages()
     {
+        
         String[][] messages = null;
         String Columns = "message_stream, message_type, s_uid, uid, message_number, image_message_path"
-                            + ", typed_message_text, message_timestamp";
-        String Db = "messages";
-        int S_uid = 1;
-        int uid = 1;
-        String messageStream = "messageStream";
-        String timeStamp = "todaysDate";
-        String order = "message_number";
+                            + ", typed_message_text, message_time, message_date";   //The columns that of data that individual instances are to be extracted from
+        String Db = "messages"; //The database that the query is applied to
+        int S_uid = 1;  //The support users personal identification number
+        int uid = 1;    //T
+        String messageStream = "message_stream"; // The conversation unique identification number
+        String order = "message_number";    //The order number of each message
         
         Connection conn = MySQLConnection.connConnect();
         
         try 
         {
+            //The sql query to be sent 
             ResultSet rs = MySQLConnection.stmtGetQuery(conn, "SELECT " + Columns + " FROM " + Db + " WHERE s_uid = " + S_uid 
                                                         + " AND uid = " + uid + " AND message_Stream = " + messageStream 
-                                                        + " AND message_timestamp = " + timeStamp + "ORDER BY " + order);
-            
+                                                        + " ORDER BY " + order);
+            // Determine the number of messages so that the array size can be specified ready for returning 
             rs.last();
             int size = rs.getRow();
-            messages = new String[size][3];
+            messages = new String[size][5];
+            //Loop through the result set of messages while on each iteration placing the message text, time, date and user id into the appropriate array locations
             rs.first();
             int i=0;
             while( rs.next())
             {
                     messages[i][0] = rs.getString("typed_message_text");
-                    messages[i][1] = rs.getString("message_timestamp");
-                    messages[i][2] = rs.getString("uid");
+                    messages[i][1] = rs.getString("message_time");
+                    messages[i][2] = rs.getString("message_date");
+                    messages[i][3] = rs.getString("uid");
+                    messages[i][4] = rs.getString("message_stream");
                     i++;
             }
             
         } catch (SQLException ex) 
         {
         }
-        
+        //Call sql connection and pass on the query statement 
         MySQLConnection.connDisconnect(conn);
         MySQLConnection.stmtDisconnect();
         return messages;
     }
     
-    
+    public static void addMessage(String image_path, int message_stream)
+    {
+        int S_uid = 1;
+        int uid = 1;
+        String type = "I";
+        
+        Connection conn = MySQLConnection.connConnect();
+        
+        try
+        {
+            MySQLConnection.stmtAmmendQuery(conn, "INSERT INTO messages( message_stream, message_type, S_uid, uid, image_message_path) VALUES ( " 
+                    + message_stream + ", " + type + ", " + S_uid + ", " + uid + ", " + image_path + ")");
+                                                    
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
 }
