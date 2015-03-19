@@ -13,7 +13,11 @@ import javax.swing.JPanel;
 
 public class MessageImage 
 {
-    
+    /*
+     * Method to save the image of the new handwritten message and call the addmessage method 
+     * passing on the parameters ImagePath and MessageStream
+     * return type void 
+     */
     public static void saveMessage(Component panel)
     {
         
