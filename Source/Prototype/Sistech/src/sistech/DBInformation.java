@@ -12,9 +12,18 @@ package sistech;
  */
 
 import java.sql.*;
+import java.util.Calendar;
 
 public class DBInformation 
 {
+    /*
+     * Method to get the reminders from the sql database for a specific date which is passed as a parameter when the method is called.
+     * The method will return an 2D String array called reminders with the following format
+     * for each instance(reminder) i;
+     * reminders[i][0] containes the reminder text
+     * reminders[i][1] contains the reminder associated time
+     * reminders[i][2] containes the reminder unique table key 
+     */
     public static String[][] getReminder(String date) 
     { 
         String[][] reminders = null;
@@ -65,6 +74,11 @@ public class DBInformation
         return reminders;
     }
     
+    /*
+     * Method to remove a specific reminder from the sql database which is passed a 
+     * specific reminder unique table key as a parameter when the method is called.
+     * return type is void
+     */
     public static void removeReminder(String key)
     {
         Connection conn = MySQLConnection.connConnect();
@@ -82,6 +96,16 @@ public class DBInformation
                 
     }
     
+    /*
+     * Method to get the messages from the sql database 
+     * The method will return a 2D String array called messages with the following format
+     * for each instance(message) i;
+     * messages[i][0] contains the message text
+     * messages[i][1] contains the message time
+     * messages[i][2] contains the message date
+     * messages[i][3] contins the unique id of the message sender
+     * messages[i][4] contains the unique message stream id
+     */
     public static String[][] getMessages()
     {
         
@@ -127,20 +151,27 @@ public class DBInformation
         MySQLConnection.stmtDisconnect();
         return messages;
     }
-    
-    public static void addMessage(String image_path, int message_stream)
+    /*
+     * Method to add a new handwritten message to the sql database
+     * when called the parameters imagePath of type string and mStream of type int must be passed. 
+     * return type void
+     */
+    public static void addMessage(String imagePath, int mStream)
     {
-        int S_uid = 1;
+        int Suid = 1;
         int uid = 1;
-        String type = "I";
+        Character mType = 'I';
+        String mTime = "010101"; // To be changed to current message sent time 
+        Calendar calendar = Calendar.getInstance();
+        java.sql.Date mDate = new java.sql.Date(calendar.getTime().getTime());
         
         Connection conn = MySQLConnection.connConnect();
         
         try
         {
-            MySQLConnection.stmtAmmendQuery(conn, "INSERT INTO messages( message_stream, message_type, S_uid, uid, image_message_path) VALUES ( " 
-                    + message_stream + ", " + type + ", " + S_uid + ", " + uid + ", " + image_path + ")");
-                                                    
+            MySQLConnection.stmtAmmendQuery(conn, "INSERT INTO messages(message_stream,s_uid,uid,message_type,image_message_path,message_time,message_date)"   
+                    + " VALUES ('"+mStream+"','"+Suid+"','"+uid+"','"+mType+"','"+imagePath+"','"+mTime+"','"+mDate+"')");
+                   //  + "VALUE (" + "\"" + mStream + "\"" + S_uid + "\"" + uid + "\"" + mType + "\"" + imagePath + "\"" + ");");                               
         }
         catch(Exception e)
         {
@@ -148,3 +179,4 @@ public class DBInformation
         }
     }
 }
+
