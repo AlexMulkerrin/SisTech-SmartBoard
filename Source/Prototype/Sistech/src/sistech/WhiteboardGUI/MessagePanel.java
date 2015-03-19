@@ -13,7 +13,7 @@ import javax.swing.*;
  *
  * @author Alex Mulkerrin
  */
-class MessagePanel extends JPanel implements ActionListener {
+class MessagePanel extends JPanel implements ActionListener, Runnable  {
     public String messageContent = "Message list goes here";
     JLabel messageContainer;
     JButton button;
@@ -25,9 +25,11 @@ class MessagePanel extends JPanel implements ActionListener {
         messageContainer = new JLabel(messageContent);
         add(messageContainer);
              
-        button = new JButton("UpdateMessages");
-        add(button);
-        go();
+//        button = new JButton("UpdateMessages");
+//        add(button);
+//        go();
+        Thread t = new Thread(this);
+        t.start();
     }
     
     public void go() {
@@ -38,5 +40,30 @@ class MessagePanel extends JPanel implements ActionListener {
         messageContent="UpdateFailed :(";
         messageContainer.setText(messageContent);
                 
+    }
+    
+    @Override
+    public void run() {
+        while (true) {
+            try {
+            String[][] reminders = sistech.DBInformation.getReminder("2015-05-15");
+            String messageString ="/n";
+            for (int i=0; i<reminders.length; i++) {
+                for (int j=0; j<reminders.length; j++) {
+                    System.out.println(reminders[i][j].toString());
+                    messageContent= messageContent + reminders[i][j].toString() +"/n";
+                }
+            }
+            } catch (Exception ex){
+                messageContent+="UpdateFailed :(";
+            }
+
+            messageContainer.setText(messageContent);
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                System.out.println("Interrupted: " + e.getMessage());
+            }
+        }
     }
 }

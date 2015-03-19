@@ -10,10 +10,10 @@ import javax.swing.*;
  *
  * @author Alex Mulkerrin
  */
-class TaskPanel extends JPanel  implements ActionListener{
+class TaskPanel extends JPanel  implements ActionListener, Runnable {
     public String taskContent = "Task list goes here";
     JLabel taskContainer;
-    JButton button;
+    //JButton button;
     
     public TaskPanel() {
         //this.setBorder(new TextBubbleBorder(Color.RED,4,16,0));
@@ -43,13 +43,15 @@ class TaskPanel extends JPanel  implements ActionListener{
         taskContainer = new JLabel(taskContent);
         add(taskContainer);
              
-        button = new JButton("UpdateTasks");
-        add(button);
-        go();
+        //button = new JButton("UpdateTasks");
+        //add(button);
+        //go();
+        Thread t = new Thread(this);
+        t.start();
     }
     
     public void go() {
-        button.addActionListener(this);
+        //button.addActionListener(this);
     }
     
     public void actionPerformed(ActionEvent event) {
@@ -57,6 +59,32 @@ class TaskPanel extends JPanel  implements ActionListener{
         taskContainer.setText(taskContent);
                 
     }
+    
+    @Override
+    public void run() {
+        while (true) {
+            try {
+            String[][] reminders = sistech.DBInformation.getReminder("2015-05-15");
+            String messageString ="/n";
+            for (int i=0; i<reminders.length; i++) {
+                for (int j=0; j<reminders.length; j++) {
+                    System.out.println(reminders[i][j].toString());
+                    taskContent= taskContent + reminders[i][j].toString() +"/n";
+                }
+            }
+            } catch (Exception ex){
+                taskContent+="UpdateFailed :(";
+            }
+
+            taskContainer.setText(taskContent);
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                System.out.println("Interrupted: " + e.getMessage());
+            }
+        }
+    }
+    
 }
 
 class DayPane extends JPanel {
@@ -99,4 +127,7 @@ class DayPane extends JPanel {
         this.add(date, BorderLayout.WEST);
         this.setBorder(new TextBubbleBorder(Color.BLUE,2,16,0));
     }
+    
+    
+    
 }

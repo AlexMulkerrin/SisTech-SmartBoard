@@ -8,7 +8,7 @@ import java.util.*;
  *
  * @author Alex Mulkerrin
  */
-public class InfoPanel extends JPanel implements ActionListener {
+public class InfoPanel extends JPanel implements Runnable {
     String name = "Ernesto";
     
     Calendar cal = Calendar.getInstance();
@@ -21,7 +21,6 @@ public class InfoPanel extends JPanel implements ActionListener {
     JLabel dateContainer;
     JLabel timeContainer;
     JLabel forecastContainer;
-    JButton updateButton;
     
     public InfoPanel() {
         setBackground(new Color(200,255,255));
@@ -37,22 +36,25 @@ public class InfoPanel extends JPanel implements ActionListener {
         forecastContainer = new JLabel("Forecast: "+forecast);
         add(forecastContainer);
         
-        updateButton = new JButton("UpdateInformation");
-        add(updateButton);
-        goEvent();
+        Thread t = new Thread(this);
+        t.start();
     }
-    
-    public void goEvent() {
-        updateButton.addActionListener(this);
-    }
-    
+
     @Override
-    public void actionPerformed(ActionEvent event) {
-    cal = Calendar.getInstance();
-    date = sdf.format(cal.getTime());
-    time = sdf2.format(cal.getTime());
-    timeContainer.setText("Time: "+time);
-                
+    public void run() {
+        while (true) {
+            cal = Calendar.getInstance();
+            date = sdf.format(cal.getTime());
+            time = sdf2.format(cal.getTime());
+            timeContainer.setText("Time: "+time);          
+            repaint();
+
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                System.out.println("Interrupted: " + e.getMessage());
+            }
+        }
     }
     
 }
