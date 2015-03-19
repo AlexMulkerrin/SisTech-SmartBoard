@@ -56,7 +56,8 @@ and open the template in the editor.
 	?>
 	
 	<form name="reminders" method="post" onsubmit=""
-		action="writeReminder.php"> 
+		action="databaseOps.php"> 
+		<!--action="supportedindividualpage.php"> --->
 		<fieldset>
 			<legend>New Reminder</legend>
 			<p></p>Date:  <input type="number" name="reminder_date" id="reminder_date" size="8"/><br/>
@@ -67,7 +68,7 @@ and open the template in the editor.
 		</fieldset>
 	</form> 
 
-	</div> <!-- end blurbcontainerleft -->
+	</div>
 
 	<div class="blurbcontainerright">
 	 <div class="blurbheader"> Messages </div>

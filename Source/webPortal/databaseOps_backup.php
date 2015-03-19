@@ -30,4 +30,5 @@ $conn->close();
 }
 //return to calling php page
 header("Refresh:0; url=supportedindividualpage.php");
+
 ?>
