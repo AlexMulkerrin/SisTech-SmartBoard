@@ -1,0 +1,20 @@
+RETRIEVE ALL MESSAGES IN A STREAM 
+=================================
+SELECT message_stream, message_type, s_uid, uid, message_number, image_message_path, typed_message_text, message_time, message_date
+FROM messages
+WHERE s_uid = sUserId
+AND uid = userID
+AND message_Stream = messageStream
+AND message_date = todaysDate
+ORDER BY message_number
+
+INSERT STATEMENT FOR IMAGE MESSAGE 
+==================================
+"messageStream", integer, should be the same for all messages in the conversation
+"sUserId", integer, should be the same for all messages in the conversation, hardcode to 1 in prototype
+"userId",  integer, should be the same for all messages in the conversation, hardcode to 1 in prototype
+"imageMessagePath" parameter a string containing typed response to supported user's message 
+"message_type" column set to 'I' to indicate handwritten message
+
+INSERT INTO messages( message_stream, message_type, s_uid, uid, image_message_path ) 
+VALUES ( $messageStream, "I", sUserId, userId, imageMessagePath )
