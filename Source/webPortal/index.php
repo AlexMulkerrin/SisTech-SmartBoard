@@ -2,36 +2,38 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
    <head>
-  <style>
-		div	{border-style:solid; border-width:1px;
-			border-color:blue}
-		div#blue_mountain {position:absolute;
-			z-index:1;top:100px;left:100px}
-		div#kopi_luwak {z-index:2;top:150px;lef:150px}
-		div#kona {z-index:3;position:absolute;
-			left:200px;top:200px}
-	</style>
-	 
+	<title>sistech sign-in</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="style.css"/>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 </head>
+
 <body>
 	<div id="container">       
-<form>
-    <center><label for="username">Username:</label>
-		<input type="text" id="username" name="username">
-    <br></br>
-<label for="password">Password:</label>
-<input type="password" id="password" name="password">
-<div id="lower">
-<input type="checkbox"><label for="checkbox">Keep me logged in</label>
-<input type="submit" value="Login">
-</br>
-<a href="signupage.php">
-    <button type="button">Add profile</button></a></center>
-</div><!--/ lower-->
 
-</form>
+	<?php include "header.php" ?>
+	
+	 <div class="innercontainer">
+	  <div class="contentcontainer">
+	   
 
-</div>
+	   <center><form name="reminders" method="post" onsubmit=""
+		action="supportedindividualpage.php"> 
+		<div class="blurbheader"> Sign-In </div>
+		<fieldset>
+			<label for="username">Username:</label><input type="text" id="username" name="username"></br>
+			<label for="password">Password:</label><input type="password" id="password" name="password"></br>
+			<div id="lower">
+			<input type="submit" class="submitreset" id="submit" name="submit" value="Sign In"/>
+			<input type="reset" class="submitreset" id ="reset" name="reset" value="Reset"/>
+			</div> <!--lower-->
+		</fieldset>
+	</form> 
+	
+	  </div> <!-- content container -->
+	 </div> <!-- inner container -->
+	</div> <!-- container -->
 	
 </body>
 </html>
