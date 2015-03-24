@@ -14,15 +14,15 @@ import javax.swing.*;
  * @author Alex Mulkerrin
  */
 class MessagePanel extends JPanel implements ActionListener, Runnable  {
-    public String messageContent = "Message list goes here";
-    JLabel messageContainer;
+    public String messageContent = "Message list goes here\n\n";
+    JTextArea messageContainer;
     JButton button;
     
     public MessagePanel() {
         setBackground(new Color(255,255,200));
         setBorder(BorderFactory.createLineBorder(Color.BLACK));
         
-        messageContainer = new JLabel(messageContent);
+        messageContainer = new JTextArea(messageContent);
         add(messageContainer);
              
 //        button = new JButton("UpdateMessages");
@@ -55,12 +55,12 @@ class MessagePanel extends JPanel implements ActionListener, Runnable  {
                 }
             }
             } catch (Exception ex){
-                messageContent+="UpdateFailed :(";
+                //messageContent+="UpdateFailed :(";
             }
 
             messageContainer.setText(messageContent);
             try {
-                Thread.sleep(6000);
+                Thread.sleep(30000);
             } catch (InterruptedException e) {
                 System.out.println("Interrupted: " + e.getMessage());
             }
