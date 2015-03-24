@@ -1,0 +1,19 @@
+
+body{
+    background-color: skyblue
+               
+      }
+      h1{color: blue;
+      text-align: center;
+      }
+      form{ 
+           text-align: center;
+        position: absolute;
+    left: 460px;
+    top: 230px;
+          width: 400px;
+          height: 360px;
+          background-color: blue;
+          border-radius: 10px;
+         
+      }

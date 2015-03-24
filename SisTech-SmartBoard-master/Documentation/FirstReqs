@@ -1,0 +1,28 @@
+Use Cases
+1) New medicine prescribed. Support Network member adds reminder to Supported Individual to take their medicine.
+Future Work
+1) Add routine to task list e.g. eat at 12pm, take your medsat 1pm etc.
+2) Supported Individual add tasks to task list
+General Functionality
+A portal with two user views :
+•	connected to by shell running on "smartboard" client device to portal with Supported Individual view (name, date, time, task list, message board) and
+•	website opened in browser window for Support Network (set-up options incl. add a photo, "smartboard" status, message and task boards)
+Functionality Support Network Portal
+1.	Set up contacts
+2.	Set up reminders
+3.	Check status of smartboard
+4.	Respond to messages (typed)
+Functionality Supported Individual (Smartboard)
+1.	Create Java "shell" such that the smartboard permanently displays. Supported user will never need to sign on etc. just use the board
+2.	Client should periodically push status (i.e. on and working) to portal
+Prioritised Work-streams - sprint 1!
+1.	Working evironment - Alex
+2.	Initial Workstream Documentation - Hilary
+3.	Get Java shell up and running on client - Matthew
+4.	Get initial version of Supported Individual screen published on your homepage - Alex
+5.	Get HTML Support Network portal page  published on your homepage - Attah and Tunde
+6.	Code for message sending - Hilary
+NOT THIS CYCLE
+7.	Set up database for messages, account types, tasks etc.
+8.	Test on multiple devices 
+
