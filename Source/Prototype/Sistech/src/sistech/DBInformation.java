@@ -79,13 +79,20 @@ public class DBInformation
      * specific reminder unique table key as a parameter when the method is called.
      * return type is void
      */
-    public static void removeReminder(String key)
+    public static void editReminder(String key, boolean check)
     {
         Connection conn = MySQLConnection.connConnect();
         
         try
         {
-            MySQLConnection.stmtAmmendQuery(conn, "DELETE FROM reminders WHERE rem_table_key = " + key);
+            if(check == true)
+            {
+            MySQLConnection.stmtAmmendQuery(conn, "UPDATE reminders SET reminder_task_completed = 1 WHERE rem_table_key = " + key);
+            }
+            else
+            {
+                MySQLConnection.stmtAmmendQuery(conn, "UPDATE reminders SET reminder_task_completed = 0 WHERE rem_table_key = " + key);
+            }
         }
         catch(Exception e)
         {
