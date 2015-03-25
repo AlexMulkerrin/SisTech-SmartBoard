@@ -1,10 +1,13 @@
 package sistech.WhiteboardGUI;
+
 import java.awt.*;
-import java.awt.event.*;
 import java.text.SimpleDateFormat;
 import javax.swing.*;
 import java.util.*;
 /**
+ * Sub-panel of the GUI which displays time, date, supported individual's name
+ * and potentially a weather forecast.A separate thread handles setting the time
+ * and date to the correct values.
  *
  * @author Alex Mulkerrin
  */
@@ -12,11 +15,14 @@ public class InfoPanel extends JPanel implements Runnable {
     String name = "Ernesto";
     
     Calendar cal = Calendar.getInstance();
-    SimpleDateFormat sdf = new SimpleDateFormat("EEE, d MMM yyyy");
-    String date = sdf.format(cal.getTime());
-    SimpleDateFormat sdf2 = new SimpleDateFormat("HH:mm:ss");
-    String time = sdf2.format(cal.getTime());
+    SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, d MMM yyyy");
+    String date = dateFormat.format(cal.getTime());
+    
+    SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
+    String time = timeFormat.format(cal.getTime());
+    
     String forecast = "Cloudy";
+    
     JLabel nameContainer;
     JLabel dateContainer;
     JLabel timeContainer;
@@ -44,8 +50,8 @@ public class InfoPanel extends JPanel implements Runnable {
     public void run() {
         while (true) {
             cal = Calendar.getInstance();
-            date = sdf.format(cal.getTime());
-            time = sdf2.format(cal.getTime());
+            date = dateFormat.format(cal.getTime());
+            time = timeFormat.format(cal.getTime());
             timeContainer.setText("Time: "+time);          
             repaint();
 

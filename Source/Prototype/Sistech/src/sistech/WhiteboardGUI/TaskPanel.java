@@ -3,17 +3,19 @@ package sistech.WhiteboardGUI;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.*;
 import javax.swing.*;
 
 /**
+ * Sub-panel displaying list of tasks for the current day. List is gotten by
+ * querying database on a separate thread. Each task displays a name, due date
+ * and interface element to mark as complete. TODO HAVE CHECKBOXES THAT UPDATE
+ * DATABASE.
  *
  * @author Alex Mulkerrin
  */
 class TaskPanel extends JPanel  implements ActionListener, Runnable {
     public String taskContent = "Task list goes here\n\n";
     JTextArea taskContainer;
-    //JButton button;
     
     public TaskPanel() {
         //this.setBorder(new TextBubbleBorder(Color.RED,4,16,0));
@@ -21,26 +23,6 @@ class TaskPanel extends JPanel  implements ActionListener, Runnable {
         setBorder(BorderFactory.createLineBorder(Color.BLACK));
         setLayout(new GridLayout(10,0));
 
-//        this.setLayout(new GridLayout(31,0));
-//        DayPane[] day = new DayPane[31];
-//        for (int i=0; i<31; i++) {
-//            day[i] = new DayPane();
-//        }
-//        Calendar cal = Calendar.getInstance();
-//        int month = cal.get(Calendar.MONTH) + 1;
-//        int year = cal.get(Calendar.YEAR);
-//        
-//        int monthLength=31;
-//        if (month ==2) {
-//            monthLength=28;            
-//        } else if (month == 9 || month == 4 || month == 6 || month == 11) {
-//            monthLength=30;            
-//        }
-//        
-//        for (int i=0; i<monthLength; i++) {
-//            //day[i].addTask(i+1,month,year); //days start at 1 not 0   
-//            this.add(day[i]);
-//        }
         taskContainer = new JTextArea(taskContent);
         add(taskContainer);
         
@@ -62,10 +44,10 @@ class TaskPanel extends JPanel  implements ActionListener, Runnable {
         //button.addActionListener(this);
     }
     
+    @Override
     public void actionPerformed(ActionEvent event) {
         taskContent="UpdateFailed :(";
-        taskContainer.setText(taskContent);
-                
+        taskContainer.setText(taskContent);            
     }
     
     @Override
@@ -96,18 +78,18 @@ class TaskPanel extends JPanel  implements ActionListener, Runnable {
     public class TaskBlock extends JPanel {
         public TaskBlock() {
             setLayout(new GridLayout(0,3));
-        JLabel nameContainer = new JLabel("task ");
-        add(nameContainer);
-        JLabel dateContainer = new JLabel("time due");
-        add(dateContainer);
-        JButton timeContainer = new JButton("tickbox");
-        add(timeContainer);
+            
+            JLabel nameContainer = new JLabel("task ");
+            add(nameContainer);
+
+            JLabel dateContainer = new JLabel("time due");
+            add(dateContainer);
+
+            JCheckBox tickBox = new JCheckBox("Done?");
+            add(tickBox);
         }
     }
 }
-
-
-
 
 ////NOT USED!
 //class DayPane extends JPanel {

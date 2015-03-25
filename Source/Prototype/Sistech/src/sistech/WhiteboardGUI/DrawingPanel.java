@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import javax.swing.*;
 
 /**
+ * Sub-panel containing drawing Canvas where user writing is recorded and 
+ * buttons for erasure and submission of written message.
  *
  * @author Alex Mulkerrin
  */
@@ -16,12 +18,12 @@ public class DrawingPanel extends JPanel {
     CanvasPanel drawingCanvas;
        
     ArrayList<Point> points = new ArrayList<>();
-       
-        
+         
     public DrawingPanel() {
         setBorder(BorderFactory.createLineBorder(Color.BLACK));
         
         JLabel tip = new JLabel("Write here ");
+        add(tip);
 
         clearButton = new JButton("Clear");
         clearButton.addActionListener(new clearButtonListener());
@@ -32,32 +34,53 @@ public class DrawingPanel extends JPanel {
         add(sendButton);
         
         drawingCanvas = new CanvasPanel();
-        add(drawingCanvas);
-                
+        add(drawingCanvas);            
     }
     
-   
     public class clearButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent event) {            
             points.clear();
             drawingCanvas.repaint();
-
         }
     }
     
     public class sendButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent event) {
+            //disable button till Database access is complete
             String message="Sending message...";
             sendButton.setText(message);
+            sendButton.setEnabled(false);
             
-            // needs to be in different thread!
-            sistech.MessageImage.saveMessage(drawingCanvas, 1);
+            Thread t = new Thread(new MessageSender());
+            t.start();   
+        }
+    }
+    
+    public class MessageSender implements Runnable {
+        @Override
+        public void run() {
+            String message="message failed";
+            try {
+                sistech.MessageImage.saveMessage(drawingCanvas, 1);
+            } catch (Exception ex) {
+                message="message failed";
+            }
             
-            points.clear();
-            drawingCanvas.repaint();
-
+            // not sure about having this always happening, if it fails, keep image?
+            //points.clear();
+            //drawingCanvas.repaint();
+        
+            sendButton.setText(message);
+            sendButton.setEnabled(true);
+            try {
+                Thread.sleep(5000);
+            } catch (Exception ex) {
+                ex.printStackTrace(System.out);
+            }
+            
+            sendButton.setText("Send");
         }
     }
     
@@ -68,7 +91,6 @@ public class DrawingPanel extends JPanel {
             addMouseListener(new MouseAdapter() {
                 @Override
                 public void mousePressed(MouseEvent e) {
-
                     Point p = null;
                     points.add(p);
                 }
@@ -77,7 +99,6 @@ public class DrawingPanel extends JPanel {
             addMouseMotionListener(new MouseAdapter() {
                 @Override
                 public void mouseDragged(MouseEvent e) {
-
                     points.add(e.getPoint());
                     repaint();
                 }
@@ -94,7 +115,7 @@ public class DrawingPanel extends JPanel {
             super.paintComponent(g);
 
             Point p1 = null;
-            Point p2 = null;
+            Point p2;
             g.setColor(Color.red);
             for (Point p : points) {
                 p2 = p1;
@@ -103,8 +124,7 @@ public class DrawingPanel extends JPanel {
                     g.drawLine(p1.x, p1.y, p2.x, p2.y);
                 }
             }
-        }
-        
-        
+        }    
     }
+    
 }
