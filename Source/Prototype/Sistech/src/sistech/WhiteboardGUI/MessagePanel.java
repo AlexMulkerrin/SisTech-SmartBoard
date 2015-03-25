@@ -5,7 +5,7 @@
  */
 package sistech.WhiteboardGUI;
 
-import java.awt.Color;
+import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
@@ -21,9 +21,14 @@ class MessagePanel extends JPanel implements ActionListener, Runnable  {
     public MessagePanel() {
         setBackground(new Color(255,255,200));
         setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        setLayout(new GridLayout(5,0));
         
         messageContainer = new JTextArea(messageContent);
         add(messageContainer);
+        
+        add(new MessageBlock());
+        add(new MessageBlock());
+        add(new MessageBlock());
              
 //        button = new JButton("UpdateMessages");
 //        add(button);
@@ -64,6 +69,18 @@ class MessagePanel extends JPanel implements ActionListener, Runnable  {
             } catch (InterruptedException e) {
                 System.out.println("Interrupted: " + e.getMessage());
             }
+        }
+    }
+    
+    public class MessageBlock extends JPanel {
+        public MessageBlock() {
+            setLayout(new GridLayout(0,3));
+        JLabel nameContainer = new JLabel("Name and icon ");
+        add(nameContainer);
+        JTextArea dateContainer = new JTextArea("message text");
+        add(dateContainer);
+        JButton timeContainer = new JButton("Respond");
+        add(timeContainer);
         }
     }
 }

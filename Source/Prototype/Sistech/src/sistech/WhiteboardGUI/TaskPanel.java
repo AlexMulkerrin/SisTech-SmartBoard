@@ -19,6 +19,7 @@ class TaskPanel extends JPanel  implements ActionListener, Runnable {
         //this.setBorder(new TextBubbleBorder(Color.RED,4,16,0));
         setBackground(new Color(200,200,255));
         setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        setLayout(new GridLayout(10,0));
 
 //        this.setLayout(new GridLayout(31,0));
 //        DayPane[] day = new DayPane[31];
@@ -42,7 +43,14 @@ class TaskPanel extends JPanel  implements ActionListener, Runnable {
 //        }
         taskContainer = new JTextArea(taskContent);
         add(taskContainer);
-             
+        
+        add(new TaskBlock());
+        add(new TaskBlock());
+        add(new TaskBlock());
+        add(new TaskBlock());
+        add(new TaskBlock());
+        add(new TaskBlock());
+        
         //button = new JButton("UpdateTasks");
         //add(button);
         //go();
@@ -85,50 +93,63 @@ class TaskPanel extends JPanel  implements ActionListener, Runnable {
         }
     }
     
+    public class TaskBlock extends JPanel {
+        public TaskBlock() {
+            setLayout(new GridLayout(0,3));
+        JLabel nameContainer = new JLabel("task ");
+        add(nameContainer);
+        JLabel dateContainer = new JLabel("time due");
+        add(dateContainer);
+        JButton timeContainer = new JButton("tickbox");
+        add(timeContainer);
+        }
+    }
 }
 
-//NOT USED!
-class DayPane extends JPanel {
-    public DayPane() {
-        //TODO set defaults?
-    }
-    
-    public void addTask(int day, int month, int year) {
-        JLabel date = new JLabel(day + "-" + month + "-" + year);
-        date.setBackground(Color.white);
-        this.add(date, BorderLayout.WEST);
-        
-        //Calendar cal = Calendar.getInstance();
-        //java.sql.Date dateCheck = new java.sql.Date(year, month, day);
-        String dateString = "";
-        if (month < 10) {
-            if (day<10) {
-                dateString = year+"-0"+month+"-0"+day;
-            } else {
-                dateString = year+"-0"+month+"-"+day;
-            }
-        } else {
-            if (day<10) {
-                dateString = year+"-"+month+"-0"+day;
-            } else {
-                dateString = year+"-"+month+"-"+day;
-            }
-        }
-        String[][] reminders = sistech.DBInformation.getReminder(dateString);
-        
-        String messageString ="\n";
-        for (int i=0; i<reminders.length; i++) {
-           // System.out.println(reminders.get(i).toString());
-           // messageString= messageString + reminders.get(i).toString() +"\n";
-        }
-        
-        JTextArea message = new JTextArea(messageString);
-        
-        this.add(message, BorderLayout.CENTER);
-        this.add(date, BorderLayout.WEST);
-        this.setBorder(new TextBubbleBorder(Color.BLUE,2,16,0));
-    }
-    
-    
-    
-}
+
+
+
+////NOT USED!
+//class DayPane extends JPanel {
+//    public DayPane() {
+//        //TODO set defaults?
+//    }
+//    
+//    public void addTask(int day, int month, int year) {
+//        JLabel date = new JLabel(day + "-" + month + "-" + year);
+//        date.setBackground(Color.white);
+//        this.add(date, BorderLayout.WEST);
+//        
+//        //Calendar cal = Calendar.getInstance();
+//        //java.sql.Date dateCheck = new java.sql.Date(year, month, day);
+//        String dateString = "";
+//        if (month < 10) {
+//            if (day<10) {
+//                dateString = year+"-0"+month+"-0"+day;
+//            } else {
+//                dateString = year+"-0"+month+"-"+day;
+//            }
+//        } else {
+//            if (day<10) {
+//                dateString = year+"-"+month+"-0"+day;
+//            } else {
+//                dateString = year+"-"+month+"-"+day;
+//            }
+//        }
+//        String[][] reminders = sistech.DBInformation.getReminder(dateString);
+//        
+//        String messageString ="\n";
+//        for (int i=0; i<reminders.length; i++) {
+//           // System.out.println(reminders.get(i).toString());
+//           // messageString= messageString + reminders.get(i).toString() +"\n";
+//        }
+//        
+//        JTextArea message = new JTextArea(messageString);
+//        
+//        this.add(message, BorderLayout.CENTER);
+//        this.add(date, BorderLayout.WEST);
+//        this.setBorder(new TextBubbleBorder(Color.BLUE,2,16,0));
+//    }
+//}
+   
+
