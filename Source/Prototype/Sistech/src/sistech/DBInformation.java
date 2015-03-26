@@ -46,10 +46,12 @@ public class DBInformation
             int size = 0;
             while(rs.next())
             {
-                if( date.equals(rs.getString("reminder_date")))
-                {
+                // Alex: commented out as reminders was not returning anything
+                //if( date.equals(rs.getString("reminder_date")))
+                //{
                 size++;
-                }
+                //}
+                // end temporary comment
             }
             reminders = new String[size][3];
             rs.first();
