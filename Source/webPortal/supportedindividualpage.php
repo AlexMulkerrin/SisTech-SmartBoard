@@ -7,7 +7,7 @@ and open the template in the editor.
 -->
 <html>
 <head>
-	<title>sistech als</title>
+	<title>Dashboard</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" type="text/css" href="style.css"/>
@@ -15,11 +15,8 @@ and open the template in the editor.
 </head>
 <body>
 <div class="container">
+ <?php include "header.php"?>
  <div class="innercontainer">
-<!--    <form name="SendComments" action="mailto:myemail@mydomain.com&subject:form.subject&body=form.body method="get"/> 
-		<textarea name="body" id="comment"></textarea><br/>
-		<input type="submit" name="submit" value="Send Message">
-	</form>  </br> -->
 	<div class="contentcontainer">
 	<div class="blurbcontainerleft">
 	<div class="blurbheader"> Reminders </div>
@@ -113,10 +110,10 @@ and open the template in the editor.
 		//close database
 		$conn->close();
 	?>
-	</div>
+	</div> <!-- blurb container right -->
             
-  </div>
- </div>
-</div>
+  </div> <!-- content container -->
+ </div> <!-- inner container -->
+</div> <!-- container -->
 </body>
 </html>
