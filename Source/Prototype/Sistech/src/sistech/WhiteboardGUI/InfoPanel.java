@@ -12,7 +12,7 @@ import java.util.*;
  * @author Alex Mulkerrin
  */
 public class InfoPanel extends JPanel implements Runnable {
-    String name = "Ernesto";
+    String name = "Joan Smith";
     
     Calendar cal = Calendar.getInstance();
     SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, d MMM yyyy");
@@ -23,23 +23,27 @@ public class InfoPanel extends JPanel implements Runnable {
     
     String forecast = "Cloudy";
     
-    JLabel nameContainer;
-    JLabel dateContainer;
-    JLabel timeContainer;
-    JLabel forecastContainer;
+    JTextArea nameContainer;
+    JTextArea dateContainer;
+    JTextArea timeContainer;
+    JTextArea forecastContainer;
     
     public InfoPanel() {
         setBackground(new Color(200,255,255));
         setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
-        setLayout(new GridLayout(3,2));
-        nameContainer = new JLabel("Name: "+name);
+        setLayout(new GridLayout(2,2,15,15));
+        nameContainer = new JTextArea("Name: "+name);
+        nameContainer.setEditable(false);
         add(nameContainer);
-        dateContainer = new JLabel("Date: "+date);
+        dateContainer = new JTextArea("Date: "+date);
+        dateContainer.setEditable(false);
         add(dateContainer);
-        timeContainer = new JLabel("Time: "+time);
+        timeContainer = new JTextArea("Time: "+time);
+        timeContainer.setEditable(false);
         add(timeContainer);
-        forecastContainer = new JLabel("Forecast: "+forecast);
+        forecastContainer = new JTextArea("Forecast: "+forecast);
+        forecastContainer.setEditable(false);
         add(forecastContainer);
         
         Thread t = new Thread(this);
