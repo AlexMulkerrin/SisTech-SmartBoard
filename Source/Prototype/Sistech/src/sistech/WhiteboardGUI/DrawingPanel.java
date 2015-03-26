@@ -20,21 +20,28 @@ public class DrawingPanel extends JPanel {
     ArrayList<Point> points = new ArrayList<>();
          
     public DrawingPanel() {
-        setBorder(BorderFactory.createLineBorder(Color.BLACK));
         
+        setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        setLayout(new BorderLayout());
+        
+        JPanel panelTopBar = new JPanel();
+        panelTopBar.setBackground(new Color(255,200,200));
         JLabel tip = new JLabel("Write here ");
-        add(tip);
+        panelTopBar.add(tip);
 
         clearButton = new JButton("Clear");
         clearButton.addActionListener(new clearButtonListener());
-        add(clearButton);
+        panelTopBar.add(clearButton);
         
         sendButton = new JButton("Send");
         sendButton.addActionListener(new sendButtonListener());
-        add(sendButton);
+        panelTopBar.add(sendButton);
+        
+        add(panelTopBar, BorderLayout.NORTH);
+        
         
         drawingCanvas = new CanvasPanel();
-        add(drawingCanvas);            
+        add(drawingCanvas, BorderLayout.CENTER);            
     }
     
     public class clearButtonListener implements ActionListener {
