@@ -1,6 +1,7 @@
 package sistech.WhiteboardGUI;
 
 import java.awt.*;
+import java.awt.event.*;
 import javax.swing.*;
 /**
  * Main window Frame of the GUI which holds all the other components. Frame is 
@@ -27,16 +28,28 @@ public class MainPage {
     }
 }
 // fullscreen Graphical User Interface window 
-class MainFrame extends JFrame {
+class MainFrame extends JFrame implements WindowFocusListener {
     public MainFrame() {
-        this.setUndecorated(true);
+        setUndecorated(true);
         Toolkit tk = Toolkit.getDefaultToolkit();
-        this.setSize((int) tk.getScreenSize().getWidth(), (int) tk.getScreenSize().getHeight());
-        this.setLayout( new BorderLayout());
+        setSize((int) tk.getScreenSize().getWidth(), (int) tk.getScreenSize().getHeight());
+        setLayout( new BorderLayout());
         
-        this.add(new ScreenPanel());
-        this.setVisible(true);
+        add(new ScreenPanel());
+        setVisible(true); 
+        addWindowFocusListener(this);
     }
+    // alt-tab closes program
+    @Override
+    public void windowLostFocus(WindowEvent e) {
+        System.exit(0);
+    }
+    // stub event handler
+    @Override
+    public void windowGainedFocus(WindowEvent e) {
+        
+    }
+    
 }
 // Parent panel across entire screen
 class ScreenPanel extends JPanel {
