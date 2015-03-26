@@ -12,77 +12,87 @@ import javax.swing.*;
  *
  * @author Alex Mulkerrin
  */
-class MessagePanel extends JPanel implements ActionListener, Runnable  {
-    public String messageContent = "Message list goes here\n\n";
-    JTextArea messageContainer;
-    JButton button;
+class MessagePanel extends JPanel implements Runnable  {
+    JPanel messageContainer;
+    Boolean selectedRecepient = false;
+    String recepientID = null;
     
     public MessagePanel() {
         setBackground(new Color(255,255,200));
         setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        setLayout(new GridLayout(5,0));
+        setLayout(new BorderLayout());
         
-        messageContainer = new JTextArea(messageContent);
-        add(messageContainer);
-        
-        add(new MessageBlock());
-        add(new MessageBlock());
-        add(new MessageBlock());
-         // need to add reply functionality here
-//        button = new JButton("UpdateMessages");
-//        add(button);
-//        go();
+        JLabel title = new JLabel("Message List goes here:");
+       
+                
+        add(title, BorderLayout.NORTH);
+        messageContainer = new JPanel();
+        messageContainer.setLayout(new GridLayout(5,0,5,5));
+        add(messageContainer, BorderLayout.CENTER);
+
         Thread t = new Thread(this);
         t.start();
-    }
-    
-    public void go() {
-        button.addActionListener(this);
-    }
-    
-    @Override
-    public void actionPerformed(ActionEvent event) {
-        messageContent="UpdateFailed :(";
-        messageContainer.setText(messageContent);            
     }
     
     @Override
     public void run() {
         while (true) {
-            try {
-            String[][] reminders = sistech.DBInformation.getMessages();
-            String messageString ="\n";
-            for (int i=0; i<reminders.length; i++) {
-                for (int j=0; j<reminders.length; j++) {
-                    System.out.println(reminders[i][j]);
-                    messageContent= messageContent + reminders[i][j] +"\n";
+            
+            String[][] messages = sistech.DBInformation.getMessages();
+            // repopulate message list
+            //remove(messageContainer);
+            messageContainer.removeAll();
+            //messageContainer = new JPanel();
+            //setLayout(new GridLayout(6,0));
+
+            for (int i=0; i<messages.length; i++) {
+                
+                String text = messages[i][0];
+                String time = messages[i][1];
+                String date = messages[i][2];
+                String sender = messages[i][3];
+                String streamID = messages[i][4];
+                if (text!=null) {
+                    messageContainer.add(new MessageBlock(sender,time,date,text,streamID));
                 }
             }
-            } catch (Exception ex){
-                //messageContent+="UpdateFailed :(";
-            }
-
-            messageContainer.setText(messageContent);
+            
+            add(messageContainer);
             try {
                 Thread.sleep(30000);
             } catch (InterruptedException e) {
                 System.out.println("Interrupted: " + e.getMessage());
             }
+            
         }
     }
     
     public class MessageBlock extends JPanel {
-        public MessageBlock() {
+        public MessageBlock(String sender, String time, String date, String text, String streamID) {
             setLayout(new GridLayout(0,3));
             
-            JLabel nameContainer = new JLabel("Name and icon ");
+            JLabel nameContainer = new JLabel("Sender: user "+sender);
             add(nameContainer);
             
-            JTextArea messageContainer = new JTextArea("message text");
+            String contents = time+" "+date+"\n"+text;
+            JTextArea messageContainer = new JTextArea(contents);
             add(messageContainer);
             
-            JButton respondButton = new JButton("Respond");
+            JButton respondButton = new JButton("Respond"+streamID);
             add(respondButton);
+        }
+    }
+    
+    public class RespondButton extends JButton implements ActionListener {
+        String senderID;
+        
+        public RespondButton(String sender) {
+            senderID = sender;
+        }
+        @Override
+        public void actionPerformed(ActionEvent ev) {
+            selectedRecepient = true;
+            recepientID = senderID;
         }
     }
     
