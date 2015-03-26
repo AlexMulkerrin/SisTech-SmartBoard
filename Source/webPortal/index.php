@@ -10,16 +10,16 @@
 </head>
 
 <body>
-	<div id="container">       
-
+	<div id="container"><center>
 	<?php include "header.php" ?>
 	
 	 <div class="innercontainer">
 	  <div class="contentcontainer">
 	   
 
-	   <center><form name="reminders" method="post" onsubmit=""
+	   <form name="signin" method="post" onsubmit=""
 		action="supportedindividualpage.php"> 
+		<div class="blurbheaderright" align="right" style="padding: 50px;">
 		<div class="blurbheader"> Sign-In </div>
 		<fieldset>
 			<label for="username">Username:</label><input type="text" id="username" name="username"></br>
@@ -29,11 +29,12 @@
 			<input type="reset" class="submitreset" id ="reset" name="reset" value="Reset"/>
 			</div> <!--lower-->
 		</fieldset>
+		</div> <!-- blurbheaderright-->
 	</form> 
 	
 	  </div> <!-- content container -->
 	 </div> <!-- inner container -->
-	</div> <!-- container -->
+	</center></div> <!-- container -->
 	
 </body>
 </html>

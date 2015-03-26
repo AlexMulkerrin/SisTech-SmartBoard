@@ -9,53 +9,32 @@
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 </head>
 
-<body><center>
-<?php include "header.php"?>
-<table> </table>
-<table id="tblForm">
-<tbody>
-    <center>
-<tr>
-<th colspan="2"> Sign up form</th>
-</tr>
-<tr>
-<td>First name</td>
-<td>
-<input type="text" ,maxlength="32/">
-</td>
-</tr>
-<tr>
-<td>Surname</td>
-<td>
-<input type="text" ,maxlength="32/">
-</td>
-</tr>
-<tr>
-<td>Username</td>
-<td>
-<input type="text" maxlength="16/">
-</td>
-</tr>
-<tr>
-<td>Password</td>
-<td>
-<input type="password" maxlength="12/">
-</td>
-</tr>
-<tr> </tr>
-<tr>
-<td>Email</td>
-<td>
-<input type="Email" maxlength="64</td">
-</td>
-</tr>
-<tr>
-<td align="center" colspan="2" ,="">
-    <a href="supportedindividualpage.php">
-        <input type="submit" value="Submit"></a></center>
-</td>
-</tr>
-</tbody>
-</table>
-</center></body>
+<body>
+	<div id="container"><center>
+	<?php include "header.php"?>
+
+	<div class="innercontainer">
+	  <div class="contentcontainer">
+	   <form name="signup" method="post" onsubmit=""
+		action="index.php"> 
+		<div class="blurbheaderright" align="right" style="padding: 50px;">
+		<div class="blurbheader"> Sign-Up </div>
+		<fieldset>
+			<label for="firstname">First name:</label><input type="text" id="firstname" name="firstname"></br>
+			<label for="surname">Surname:</label><input type="text" id="surname" name="surname"></br>
+			<label for="username">Username:</label><input type="text" id="username" name="username"></br>
+			<label for="password">Password:</label><input type="password" id="password" name="password"></br>
+			<label for="password">Email:</label><input type="email" id="email" name="email"></br>
+			<div id="lower">
+				<input type="submit" class="submitreset" id="submit" name="submit" value="Sign In"/>
+				<input type="reset" class="submitreset" id ="reset" name="reset" value="Reset"/>
+			</div> <!--lower-->
+		</fieldset>
+		</div> <!-- blurbheaderright-->
+	   </form> 
+	 </div> <!-- content container -->
+	</div> <!-- innercontainer -->
+	
+	</div> <!-- container -->
+</body>
 </html>

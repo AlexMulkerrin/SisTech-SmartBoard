@@ -1,20 +1,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
 <head>
-	<title>Dashboard</title>
+	<title>sistech als</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" type="text/css" href="style.css"/>
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 </head>
 <body>
-<div class="container">
+<div id="container"><center>
  <?php include "header.php"?>
  <div class="innercontainer">
 	<div class="contentcontainer">
@@ -58,9 +52,11 @@ and open the template in the editor.
 			<legend>New Reminder</legend>
 			<p></p>Date:  <input type="number" name="reminder_date" id="reminder_date" size="8"/><br/>
 			<p></p>Time:  <input type="number" name="reminder_time" id="reminder_time" size="6"/><br/>
-			Reminder: <textarea name="reminder_text" id="reminder_text" rows="8" cols="58"></textarea>					
-			<input type="submit" class="submitreset" id="submit" name="submit" value="Add Reminder"/>
-			<input type="reset" class="submitreset" id ="reset" name="reset" value="Reset"/>
+			Reminder: <textarea name="reminder_text" id="reminder_text" rows="8" cols="30"></textarea><br/>
+			<div id="lower">
+				<input type="submit" class="submitreset" id="submit" name="submit" value="Sign In"/>
+				<input type="reset" class="submitreset" id ="reset" name="reset" value="Reset"/>
+			</div> <!--lower-->
 		</fieldset>
 	</form> 
 
@@ -99,8 +95,7 @@ and open the template in the editor.
 		action="writeMessage.php"> 
 		<fieldset>
 			<legend>New Message</legend>
-		
-			Message: <textarea name="message_text" id="message_text" rows="8" cols="58"></textarea>					
+			Message: <textarea name="message_text" id="message_text" rows="8" cols="23"></textarea><br/>			
 			<input type="submit" class="submitreset" id="submit" name="submit" value="Add Message"/>
 			<input type="reset" class="submitreset" id ="reset" name="reset" value="Reset"/>
 		</fieldset>
@@ -110,10 +105,10 @@ and open the template in the editor.
 		//close database
 		$conn->close();
 	?>
-	</div> <!-- blurb container right -->
+	</div>
             
   </div> <!-- content container -->
- </div> <!-- inner container -->
+ </div></center> <!-- inner container -->
 </div> <!-- container -->
 </body>
 </html>

@@ -46,7 +46,7 @@ fieldset
 	width: 600px;
 	border :1px solid #1c3f95;
 	border: none;
-	padding: 10px;
+	/*padding: 10px;*/
 }
 
 input:focus
@@ -70,13 +70,20 @@ textarea:focus
 	background-color: #D1E0FF;
 }
 
+label
+{
+	vertical-align: top;
+}
+
 textarea
 {
-	padding-left: 15px;
+	/*padding-left: 15px;*/
+	margin-top: 5px;
 	border :1px solid #6699FF;
 	border-radius: 5px;
 	box-shadow: 5px 5px 5px #888888;
-	margin-left: 5px;
+	margin-right: 25px;
+	margin-bottom: 10px;
 }
 
 td
@@ -110,6 +117,8 @@ tr
 
 .container
 {
+	position: relative;
+	float: left;
 	width: 940px;
 	margin: 0 auto;
 }
@@ -128,23 +137,27 @@ tr
 	width: 940px;
 	background-image: url(images/AssignmentTextBar.jpg);
 	background-repeat: no-repeat;
+	clear:both;
 }
 
 .navigation
 {
 	height: 30px;
 	position: relative;
-	float: left;
+	/*float: left;*/
 	width: 940px;
+	padding-right: 45px;
 	background-image: url(images/AssignmentNavigation.jpg);
 	background-repeat: repeat-x;
+	clear:both;
 }
 
 .navmenu
 {
 	height: 30px;
-	width: 650px;
-	padding-left: 5px;
+	width: 940px;
+	/*padding-left: 5px;*/
+	clear:both;
 }
 
 .linkbox
@@ -152,7 +165,7 @@ tr
 	width: 60px;
 	position: relative;
 	margin-right: 10px;
-	float: left;
+	float: right;
 	font-family: verdana;
 	font-size: 12px;
 	font-weight: bold;
@@ -162,18 +175,20 @@ tr
 
 .banner
 {
-	height: 349px;
+	height: 200px;
 	position: relative;
-	float: left;
+	/*float: left;*/
 	width: 940px;
+	margin-top: 50px;
 	background-image: url(images/SistechBanner.jpg);
 	background-repeat: no-repeat;
+	clear:both;
 }
 
 .contentcontainer
 {
 	position: relative;
-	float: left;
+	float: middle;
 	width: 940px;
 	overflow: hidden;
 	background-image: url(images/AssignmentBackground.jpg);
@@ -181,7 +196,7 @@ tr
 
 .blurbcontainerleft
 {
-	width: 500px;
+	width: 460px;
 	padding: 5px 5px 10px 5px;
 	position: relative;
 	float: left;
@@ -191,7 +206,7 @@ tr
 
 .blurbcontainerright
 {
-	width: 400px;
+	width: 450px;
 	padding: 5px 10px 10px 5px;
 	position: relative;
 	float: right;
@@ -200,7 +215,7 @@ tr
 .blurbheader
 {
 	height: 20px;
-	width: 460px;
+	width: 450px;
 	font-family: verdana;
 	font-size: 16px;
 	font-weight:bold;
