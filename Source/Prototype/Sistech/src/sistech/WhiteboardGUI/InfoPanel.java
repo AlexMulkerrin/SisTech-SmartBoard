@@ -23,29 +23,24 @@ public class InfoPanel extends JPanel implements Runnable {
     
     String forecast = "Cloudy";
     
-    JTextArea nameContainer;
-    JTextArea dateContainer;
-    JTextArea timeContainer;
-    JTextArea forecastContainer;
+    TextBox nameContainer;
+    TextBox dateContainer;
+    TextBox timeContainer;
+    TextBox forecastContainer;
     
     public InfoPanel() {
         setBackground(new Color(200,255,255));
         setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
         setLayout(new GridLayout(2,2,15,15));
-        nameContainer = new JTextArea("Name: "+name);
-        nameContainer.setEditable(false);
-        add(nameContainer);
-        dateContainer = new JTextArea("Date: "+date);
-        dateContainer.setEditable(false);
-        add(dateContainer);
-        timeContainer = new JTextArea("Time: "+time);
-        timeContainer.setEditable(false);
-        add(timeContainer);
-        forecastContainer = new JTextArea("Forecast: "+forecast);
-        forecastContainer.setEditable(false);
-        add(forecastContainer);
         
+        nameContainer = new TextBox("Hello "+name);
+        add(nameContainer);
+        dateContainer =new TextBox("Today is "+date);
+        add(dateContainer);
+        timeContainer = new TextBox("and the time is "+time);
+        add(timeContainer);
+
         Thread t = new Thread(this);
         t.start();
     }
@@ -56,7 +51,7 @@ public class InfoPanel extends JPanel implements Runnable {
             cal = Calendar.getInstance();
             date = dateFormat.format(cal.getTime());
             time = timeFormat.format(cal.getTime());
-            timeContainer.setText("Time: "+time);          
+            timeContainer.setText("and the time is "+time);          
             repaint();
 
             try {
@@ -64,6 +59,15 @@ public class InfoPanel extends JPanel implements Runnable {
             } catch (InterruptedException e) {
                 System.out.println("Interrupted: " + e.getMessage());
             }
+        }
+    }
+    
+    public class TextBox extends JTextArea {
+        TextBox(String text) {
+            setText(text);
+            setEditable(false);
+            setFont(new Font("Kristen ITC", Font.BOLD, 20));
+            this.setMargin(new Insets(20,20,20,20));
         }
     }
     
