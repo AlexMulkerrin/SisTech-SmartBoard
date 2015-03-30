@@ -54,20 +54,31 @@ class MainFrame extends JFrame implements WindowFocusListener {
 // Parent panel across entire screen
 class ScreenPanel extends JPanel {
     public ScreenPanel() {
-        this.setLayout(new GridLayout(0,2));
-        this.setBackground(new Color(255,200,255));
-             
-        this.add(new TaskPanel());
-        this.add(new RightPanel());
+        setLayout(new BorderLayout());
+        setBackground(new Color(255,200,255));
+         
+        add(new InfoPanel(), BorderLayout.NORTH);
+        add(new LowerPanel(), BorderLayout.CENTER);
     }
 }
+
+// Screen lower panels
+class LowerPanel extends JPanel {
+    public LowerPanel() {
+        setBackground(new Color(255,200,200));
+        setLayout(new GridLayout(0,2));
+        
+        add(new TaskPanel());
+        add(new RightPanel());
+    }
+}
+
 // Screen right side panels
 class RightPanel extends JPanel {
     public RightPanel() {
         setBackground(new Color(255,200,200));
-        setLayout(new GridLayout(3,0));
+        setLayout(new GridLayout(2,0));
         
-        add(new InfoPanel());
         add(new MessagePanel());
         add(new DrawingPanel());
     }
