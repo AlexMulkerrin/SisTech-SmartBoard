@@ -26,16 +26,20 @@ public class DrawingPanel extends JPanel {
         
         JPanel panelTopBar = new JPanel();
         panelTopBar.setBackground(new Color(255,200,200));
-        JLabel tip = new JLabel("Write here ");
+        JLabel tip = new Styling.SLabel("Write here:");
         panelTopBar.add(tip);
 
-        clearButton = new JButton("Clear");
-        clearButton.addActionListener(new clearButtonListener());
-        panelTopBar.add(clearButton);
+        JPanel panelSideBar = new JPanel();
+        panelSideBar.setLayout(new GridLayout(2,0,0,100));
         
-        sendButton = new JButton("Send");
+        clearButton = new Styling.SButton("Clear");
+        clearButton.addActionListener(new clearButtonListener());
+        panelSideBar.add(clearButton);
+        
+        sendButton = new Styling.SButton("Send");
         sendButton.addActionListener(new sendButtonListener());
-        panelTopBar.add(sendButton);
+        panelSideBar.add(sendButton);
+        add(panelSideBar, BorderLayout.EAST);
         
         add(panelTopBar, BorderLayout.NORTH);
         
