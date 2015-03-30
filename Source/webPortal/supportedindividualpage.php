@@ -5,14 +5,14 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-	<link rel="stylesheet" type="text/css" href="style.css"/>
+	<link rel="stylesheet" type="text/css" href="SISTECHstyle.css"/>
+	<link rel="stylesheet" type="text/css" href="jquery.ui.timepicker.css"/>
 	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
 	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	<script src="js/jquery.ui.timepicker.js"></script>	
 	<script>
-		$(function() {
+		$(document).ready(function(){
 			$( "#datepicker" ).datepicker();
-		});
-		$()function(){
 			$('#timepicker').timepicker();
 		});
 	</script>
@@ -62,10 +62,10 @@
 		<fieldset>
 			<legend>New Reminder</legend>
 			<p></p>Date:  <input type="text" id="datepicker" name="reminder_date"/><br/>
-			<p></p>Time:  <input type="number" name="reminder_time" id="timepicker" size="6"/><br/>
+			<p></p>Time:  <input type="text" id="timepicker" name="reminder_time" size="6"/><br/>
 			Reminder: <textarea name="reminder_text" id="reminder_text" rows="8" cols="30"></textarea><br/>
 			<div id="lower">
-				<input type="submit" class="submitreset" id="submit" name="submit" value="Sign In"/>
+				<input type="submit" class="submitreset" id="submit" name="submit" value="Add Reminder"/>
 				<input type="reset" class="submitreset" id ="reset" name="reset" value="Reset"/>
 			</div> <!--lower-->
 		</fieldset>

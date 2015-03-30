@@ -1,0 +1,346 @@
+﻿*{
+/*remove default margins and padding to ensure site looks the same across different browsers*/
+	margin: 0;
+	padding: 0;
+}
+
+/* styling for HTML elements.*/
+body 
+{
+font-family: verdana;
+font-size: 12px;
+/*background-color: #CCCCCC;*/
+color: #1c3f95;
+text-align: left;
+}
+
+img
+{
+vertical-align:text-top;
+}
+
+ul
+{
+	padding-top: 0;
+	padding-left: 10px;
+}
+
+li
+{
+	margin-left: 5px;
+}
+
+legend
+{
+	font-family: verdana;
+	font-size: 12px;
+	color: #1c3f95;
+	text-align: left;
+	padding-top: 20px;
+	font-weight: bold;
+	margin-left: 0;
+}
+
+fieldset
+{
+	width: 600px;
+	border :1px solid #1c3f95;
+	border: none;
+	/*padding: 10px;*/
+}
+
+input:focus
+{
+/*highlight input area for user*/
+	background-color: #D1E0FF;
+}
+
+input
+{
+	border :1px solid #6699FF;
+	/*rounded corners*/
+	border-radius: 5px;
+	/*shadow effect*/
+	box-shadow: 5px 5px 5px #888888;
+	padding: 5px;
+}
+
+textarea:focus
+{
+	background-color: #D1E0FF;
+}
+
+label
+{
+	vertical-align: top;
+}
+
+textarea
+{
+	/*padding-left: 15px;*/
+	margin-top: 5px;
+	border :1px solid #6699FF;
+	border-radius: 5px;
+	box-shadow: 5px 5px 5px #888888;
+	margin-right: 25px;
+	margin-bottom: 10px;
+}
+
+td
+{
+	border :1px solid #1c3f95;
+	border-radius: 5px;
+	box-shadow: 5px 5px 5px #888888;
+	vertical-align: text-top;
+	padding :10px;
+	text-align: left;
+}
+
+th
+{
+	text-align :left;
+	padding :5px 5px 5px 5px;
+}
+
+tr
+{
+	vertical-align :text-top;
+}
+
+/*styling for HTML element classes*/
+
+.fieldsetcontainer
+{
+	border :1px solid #1c3f95;
+	width: 600px;
+}
+
+.container
+{
+	position: relative;
+	float: left;
+	width: 940px;
+	margin: 0 auto;
+}
+
+.innerContainer
+{
+	position: relative;
+	float: left;
+	width: 940px;
+}
+
+.header{
+	height: 68px;
+	position: relative;
+	float: left;
+	width: 940px;
+	background-image: url(images/AssignmentTextBar.jpg);
+	background-repeat: no-repeat;
+	clear:both;
+}
+
+.navigation
+{
+	height: 30px;
+	position: relative;
+	/*float: left;*/
+	width: 940px;
+	padding-right: 45px;
+	background-image: url(images/AssignmentNavigation.jpg);
+	background-repeat: repeat-x;
+	clear:both;
+}
+
+.navmenu
+{
+	height: 30px;
+	width: 940px;
+	/*padding-left: 5px;*/
+	clear:both;
+}
+
+.linkbox
+{
+	width: 60px;
+	position: relative;
+	margin-right: 10px;
+	float: right;
+	font-family: verdana;
+	font-size: 12px;
+	font-weight: bold;
+	padding: 5px;
+
+}
+
+.banner
+{
+	height: 200px;
+	position: relative;
+	/*float: left;*/
+	width: 940px;
+	margin-top: 50px;
+	background-image: url(images/SistechBanner.jpg);
+	background-repeat: no-repeat;
+	clear:both;
+}
+
+.contentcontainer
+{
+	position: relative;
+	float: middle;
+	width: 940px;
+	overflow: hidden;
+	background-image: url(images/AssignmentBackground.jpg);
+}
+
+.blurbcontainerleft
+{
+	width: 460px;
+	padding: 5px 5px 10px 5px;
+	position: relative;
+	float: left;
+	border-radius: 5px;
+	box-shadow: 5px 5px 5px #888888;
+	overflow: scroll;
+}
+
+.blurbcontainerright
+{
+	width: 450px;
+	padding: 5px 10px 10px 5px;
+	position: relative;
+	float: right;
+	overflow: scroll;
+}
+
+.blurbheader
+{
+	height: 20px;
+	width: 450px;
+	font-family: verdana;
+	font-size: 16px;
+	font-weight:bold;
+	color: #1c3f95;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	margin-left: 10px;
+}
+
+.blurbtext
+{
+	font-family: verdana;
+	font-size: 11px;
+	color: #1c3f95;
+	margin-left: 10px;
+}
+
+.projecttable
+{
+	padding-left: 10px;
+	width :930px;
+	border: none;
+}
+
+/*NOTE: The text in the accordion is deliberately not blue to create a visual delineation from the main page content.*/
+.accordtable
+{
+	width: 310px;
+}
+
+.accordth
+{
+	width: 150px;
+	position: relative;
+	float: left;
+	text-align: center;
+	vertical-align: middle;
+}
+
+.accordtd
+{
+	border:none;
+}
+
+.accordimage
+{
+	 width: 100px;
+	 height: 50px;
+	 float: left;
+}
+
+.submitreset
+{
+/*I created this class for both of the submit and reset buttons 
+so I could style them to look the same as they sit side by side
+on my "contact us" form */
+	margin-left: 15px;
+	font-family: verdana;
+	font-size: 12px;
+	font-weight: bold;
+	font-style: italic;
+	color: #1c3f95;
+	background-color: #C2D6FF;
+	text-align: left;
+	border :2px solid #6699FF;
+}
+
+.contactformcontainer
+{
+	width: 580px;
+	padding: 5px 5px 10px 5px;
+	position: relative;
+	float: left;
+	border-radius: 5px;
+	box-shadow: 5px 5px 5px #888888;
+}
+
+.formlogoscontainer
+{
+	width: 310px;
+	margin-left: 30px;
+	margin-top: 10px;
+	position: relative;
+	float: right;
+}
+
+.footer
+{
+	padding-top: 10px;
+	height: 200px;
+	position: relative;
+	float: left;
+	width: 940px;
+	background-image: url(images/AssignmentFooter.jpg);
+	background-repeat: repeat-x;
+}
+
+.footerleft
+{
+	height: 185px;
+	width: 700px;
+	/*note shorthand coding of padding attributes top-right-bottom-left*/
+	padding: 5px 5px 10px 5px;
+	position: relative;
+	float: left;
+}
+
+.footerright
+{
+	height: 185px;
+	width: 200px;
+	padding: 5px 5px 10px 5px;
+	position: relative;
+	float: right;
+}
+
+.ui-datepicker 
+{
+			background: #D1E0FF;
+}
+
+.ui-timepicker 
+{
+			background: #D1E0FF;
+}
+
