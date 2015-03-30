@@ -4,8 +4,19 @@
 	<title>sistech als</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 	<link rel="stylesheet" type="text/css" href="style.css"/>
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	<script>
+		$(function() {
+			$( "#datepicker" ).datepicker();
+		});
+		$()function(){
+			$('#timepicker').timepicker();
+		});
+	</script>
+	
 </head>
 <body>
 <div id="container"><center>
@@ -50,8 +61,8 @@
 		action="writeReminder.php"> 
 		<fieldset>
 			<legend>New Reminder</legend>
-			<p></p>Date:  <input type="number" name="reminder_date" id="reminder_date" size="8"/><br/>
-			<p></p>Time:  <input type="number" name="reminder_time" id="reminder_time" size="6"/><br/>
+			<p></p>Date:  <input type="text" id="datepicker" name="reminder_date"/><br/>
+			<p></p>Time:  <input type="number" name="reminder_time" id="timepicker" size="6"/><br/>
 			Reminder: <textarea name="reminder_text" id="reminder_text" rows="8" cols="30"></textarea><br/>
 			<div id="lower">
 				<input type="submit" class="submitreset" id="submit" name="submit" value="Sign In"/>
