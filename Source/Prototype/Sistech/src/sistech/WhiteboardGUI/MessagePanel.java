@@ -22,7 +22,7 @@ class MessagePanel extends JPanel implements Runnable  {
         setBorder(BorderFactory.createLineBorder(Color.BLACK));
         setLayout(new BorderLayout());
         
-        JLabel title = new JLabel("Message List goes here:");
+        JLabel title = new Styling.SLabel("Message List goes here:");
        
                 
         add(title, BorderLayout.NORTH);
@@ -40,10 +40,15 @@ class MessagePanel extends JPanel implements Runnable  {
             
             String[][] messages = sistech.DBInformation.getMessages();
             // repopulate message list
-            //remove(messageContainer);
             messageContainer.removeAll();
-            //messageContainer = new JPanel();
-            //setLayout(new GridLayout(6,0));
+            
+            JPanel headers = new JPanel();
+            headers.setLayout(new GridLayout(0,3));
+            headers.add(new Styling.SLabel("Message"));
+            headers.add(new Styling.SLabel("Sender"));
+            headers.add(new Styling.SLabel("Time"));
+
+            messageContainer.add(headers);
 
             for (int i=0; i<messages.length; i++) {
                 
@@ -71,15 +76,24 @@ class MessagePanel extends JPanel implements Runnable  {
         public MessageBlock(String sender, String time, String date, String text, String streamID) {
             setLayout(new GridLayout(0,3));
             
-            JLabel nameContainer = new JLabel("Sender: user "+sender);
-            add(nameContainer);
-            
-            String contents = time+" "+date+"\n"+text;
-            JTextArea messageContainer = new JTextArea(contents);
+                       
+            JTextArea messageContainer = new Styling.STextArea(text);
             add(messageContainer);
             
-            JButton respondButton = new JButton("Respond"+streamID);
-            add(respondButton);
+            JLabel nameContainer;
+            if (Integer.parseInt(sender) == 1) {
+                nameContainer = new Styling.SLabel("John Smith");
+            } else {
+                nameContainer = new Styling.SLabel("user "+sender);
+            }
+            add(nameContainer);
+            
+            String contents = time+" "+date;
+            JTextArea timeContainer = new Styling.STextArea(contents);
+            add(timeContainer);
+            
+            //JButton respondButton = new Styling.SButton("Respond"+streamID);
+            //add(respondButton);
         }
     }
     
