@@ -21,36 +21,24 @@ class TaskPanel extends JPanel  implements Runnable {
         setBorder(BorderFactory.createLineBorder(Color.BLACK));
         setLayout(new BorderLayout());
         
-        JLabel title = new JLabel("Todo list goes here:");
+        JLabel title = new Styling.SLabel("Todo list goes here:");
         
         add(title, BorderLayout.NORTH);
         taskContainer = new JPanel();
-        taskContainer.setLayout(new GridLayout(6,0,5,5));
+        taskContainer.setLayout(new GridLayout(6,0,10,10));
+
+        JPanel headers = new JPanel();
+        headers.setLayout(new GridLayout(0,3));
+        headers.add(new Styling.SLabel("Task"));
+        headers.add(new Styling.SLabel("Time due"));
+        headers.add(new Styling.SLabel("Tick list"));
+        
+        taskContainer.add(headers);
         add(taskContainer, BorderLayout.CENTER);
-        
-//        add(new TaskBlock());
-//        add(new TaskBlock());
-//        add(new TaskBlock());
-//        add(new TaskBlock());
-//        add(new TaskBlock());
-//        add(new TaskBlock());
-        
-        //button = new JButton("UpdateTasks");
-        //add(button);
-        //go();
+
         Thread t = new Thread(this);
         t.start();
     }
-    
-    public void go() {
-        //button.addActionListener(this);
-    }
-    
-//    @Override
-//    public void actionPerformed(ActionEvent event) {
-//        taskContent="UpdateFailed :(";
-//        taskContainer.setText(taskContent);            
-//    }
     
     @Override
     public void run() {
@@ -59,6 +47,14 @@ class TaskPanel extends JPanel  implements Runnable {
             String[][] reminders = sistech.DBInformation.getReminder("2015-05-01");
             // repopulate Todo list
             taskContainer.removeAll();
+            
+            JPanel headers = new JPanel();
+            headers.setLayout(new GridLayout(0,3));
+            headers.add(new Styling.SLabel("Task"));
+            headers.add(new Styling.SLabel("Time due"));
+            headers.add(new Styling.SLabel("Tick list"));
+
+            taskContainer.add(headers);
             
             for (int i=0; i<reminders.length; i++) {
 
@@ -81,28 +77,32 @@ class TaskPanel extends JPanel  implements Runnable {
     
     public class TaskBlock extends JPanel {
         public TaskBlock(String text, String time, String key) {
-            setLayout(new GridLayout(0,3));
+            setLayout(new GridLayout(0,3,10,10));
             
-            JTextArea nameContainer = new JTextArea("task "+text);
+            JTextArea nameContainer = new Styling.STextArea(text);
             add(nameContainer);
 
-            JLabel dateContainer = new JLabel("time due "+time);
+            JTextArea dateContainer = new Styling.STextArea(time);
             add(dateContainer);
 
-            JCheckBox tickBox = new JCheckBox("id:"+key);
-            tickBox.addItemListener(new CheckBoxListener(key));
+            JButton tickBox = new Styling.SButton("id:"+key);
+            tickBox.addActionListener(new CheckBoxListener(key));
             add(tickBox);
         }
     }
     
-    public class CheckBoxListener implements ItemListener {
+    public class CheckBoxListener implements ActionListener {
         String taskID;
         
         public CheckBoxListener(String key) {
             taskID = key;
+            
         }
         @Override
-        public void itemStateChanged(ItemEvent ev) {
+        public void actionPerformed(ActionEvent event) {
+            // change text of button when triggered
+            JButton source = (JButton) event.getSource();
+            source.setText("Done!");
             System.out.println("Clicked check box for"+ taskID);
             Thread t = new Thread(new TaskSender(taskID));
             t.start();
