@@ -35,7 +35,7 @@ legend
 	font-family: verdana;
 	font-size: 12px;
 	color: #1c3f95;
-	text-align: left;
+	text-align: right;
 	padding-top: 20px;
 	font-weight: bold;
 	margin-left: 0;
@@ -47,6 +47,12 @@ fieldset
 	border :1px solid #1c3f95;
 	border: none;
 	/*padding: 10px;*/
+}
+
+fieldset p {
+	display:block;
+	float:left;
+	width:100px;
 }
 
 input:focus
@@ -88,9 +94,9 @@ textarea
 
 td
 {
-	border :1px solid #1c3f95;
+	border :1px solid #99B8CC;
 	border-radius: 5px;
-	box-shadow: 5px 5px 5px #888888;
+	box-shadow: 5px 5px 5px #99B8CC;
 	vertical-align: text-top;
 	padding :10px;
 	text-align: left;
@@ -142,11 +148,11 @@ tr
 
 .navigation
 {
-	height: 30px;
+	height: 40px;
 	position: relative;
 	/*float: left;*/
 	width: 940px;
-	padding-right: 45px;
+	/*padding-right: 25px;*/
 	background-image: url(images/AssignmentNavigation.jpg);
 	background-repeat: repeat-x;
 	clear:both;
@@ -162,14 +168,17 @@ tr
 
 .linkbox
 {
-	width: 60px;
+	width: 70px;
 	position: relative;
-	margin-right: 10px;
+	margin-left: 10px;
 	float: right;
 	font-family: verdana;
 	font-size: 12px;
 	font-weight: bold;
-	padding: 5px;
+	text-align: right;
+	padding-left: 5px;
+	padding-top: 5px;
+	padding-bottom: 5px;
 
 }
 
@@ -181,6 +190,7 @@ tr
 	width: 940px;
 	margin-top: 50px;
 	background-image: url(images/SistechBanner.jpg);
+	background-size: 955px 200px;
 	background-repeat: no-repeat;
 	clear:both;
 }
@@ -200,18 +210,25 @@ tr
 	padding: 5px 5px 10px 5px;
 	position: relative;
 	float: left;
+	border :1px solid #99B8CC;
 	border-radius: 5px;
 	box-shadow: 5px 5px 5px #888888;
 	overflow: scroll;
+	text-align: left;
 }
 
 .blurbcontainerright
 {
-	width: 450px;
+	width: 430px;
 	padding: 5px 10px 10px 5px;
 	position: relative;
 	float: right;
+	border :1px solid #99B8CC;
+	border-radius: 5px;
+	box-shadow: 5px 5px 5px #888888;
 	overflow: scroll;
+	text-align: left;
+	margin-left: 20px;
 }
 
 .blurbheader
@@ -224,7 +241,8 @@ tr
 	color: #1c3f95;
 	padding-top: 10px;
 	padding-bottom: 10px;
-	margin-left: 10px;
+	/*margin-left: 10px;*/
+	text-align: left;
 }
 
 .blurbtext

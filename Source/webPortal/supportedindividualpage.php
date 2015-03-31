@@ -25,6 +25,9 @@
 	<div class="contentcontainer">
 	<div class="blurbcontainerleft">
 	<div class="blurbheader"> Reminders </div>
+	<table>
+	<th></th>
+	
 	<?php
 		$servername = "mysql.abdn.ac.uk";
 		$username = "t02hah14_sistech";
@@ -49,21 +52,26 @@
 		if ($result->num_rows > 0) {
 		// output data of each row
 		while($row = $result->fetch_assoc()) {
-		echo $task_no.". ".$row["reminder_time_by"]. " " . $row["reminder_text"]."<br>";
+		echo "<tr>"; //create and format table rows using php, HTML and data read from database
+		echo "<td>".$task_no." "."</td>";
+		echo "<td>".$row["reminder_time_by"]."</td>";
+		echo "<td>". $row["reminder_text"]."</td>";
+		echo "</tr>";
 		$task_no+=1;
 		}
 		} else {
 		echo "0 results";
 		}
 	?>
+	</table>
 	
 	<form name="reminders" method="post" onsubmit=""
 		action="writeReminder.php"> 
 		<fieldset>
-			<legend>New Reminder</legend>
-			<p></p>Date:  <input type="text" id="datepicker" name="reminder_date"/><br/>
-			<p></p>Time:  <input type="text" id="timepicker" name="reminder_time" size="6"/><br/>
-			Reminder: <textarea name="reminder_text" id="reminder_text" rows="8" cols="30"></textarea><br/>
+			<div class="blurbheader">Type In A New Reminder Here</div>
+			<br/>Date:  <input type="text" id="datepicker" name="reminder_date"/>
+			<br/>Time:  <input type="text" id="timepicker" name="reminder_time" size="6"/>
+			<br/>Reminder: <textarea name="reminder_text" id="reminder_text" rows="8" cols="30"></textarea><br/>
 			<div id="lower">
 				<input type="submit" class="submitreset" id="submit" name="submit" value="Add Reminder"/>
 				<input type="reset" class="submitreset" id ="reset" name="reset" value="Reset"/>
