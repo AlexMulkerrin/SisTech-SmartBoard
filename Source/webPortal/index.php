@@ -19,16 +19,15 @@
 
 	   <form name="signin" method="post" onsubmit=""
 		action="supportedindividualpage.php"> 
-		<div class="blurbheaderright" align="right" style="padding: 50px;">
-		<div class="blurbheader"> Sign-In </div>
-		<fieldset>
+		<div class="blurbheaderright">Sign-In Here</div>
+		<div align="right"><fieldset>
 			<label for="username">Username:</label><input type="text" id="username" name="username"></br>
 			<label for="password">Password:</label><input type="password" id="password" name="password"></br>
 			<div id="lower">
 			<input type="submit" class="submitreset" id="submit" name="submit" value="Sign In"/>
 			<input type="reset" class="submitreset" id ="reset" name="reset" value="Reset"/>
 			</div> <!--lower-->
-		</fieldset>
+		</fieldset></div>
 		</div> <!-- blurbheaderright-->
 	</form> 
 	

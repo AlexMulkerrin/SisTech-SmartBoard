@@ -17,8 +17,9 @@
 	  <div class="contentcontainer">
 	   <form name="signup" method="post" onsubmit=""
 		action="index.php"> 
-		<div class="blurbheaderright" align="right" style="padding: 50px;">
-		<div class="blurbheader"> Sign-Up </div>
+		<div class="blurbheaderright"> Sign-Up Here</div>
+		<div align="right">
+		
 		<fieldset>
 			<label for="firstname">First name:</label><input type="text" id="firstname" name="firstname"></br>
 			<label for="surname">Surname:</label><input type="text" id="surname" name="surname"></br>
@@ -30,8 +31,8 @@
 				<input type="reset" class="submitreset" id ="reset" name="reset" value="Reset"/>
 			</div> <!--lower-->
 		</fieldset>
-		</div> <!-- blurbheaderright-->
 	   </form> 
+	   </div>
 	 </div> <!-- content container -->
 	</div> <!-- innercontainer -->
 	

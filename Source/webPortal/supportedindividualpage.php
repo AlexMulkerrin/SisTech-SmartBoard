@@ -24,7 +24,7 @@
  <div class="innercontainer">
 	<div class="contentcontainer">
 	<div class="blurbcontainerleft">
-	<div class="blurbheader"> Reminders </div>
+	<div class="blurbheader"> Today's Reminders </div>
 	<table>
 	<th></th>
 	
@@ -67,22 +67,24 @@
 	
 	<form name="reminders" method="post" onsubmit=""
 		action="writeReminder.php"> 
-		<fieldset>
-			<div class="blurbheader">Type In A New Reminder Here</div>
-			<br/>Date:  <input type="text" id="datepicker" name="reminder_date"/>
-			<br/>Time:  <input type="text" id="timepicker" name="reminder_time" size="6"/>
-			<br/>Reminder: <textarea name="reminder_text" id="reminder_text" rows="8" cols="30"></textarea><br/>
+		<fieldset><div class="blurbheader"><br/>Type In A New Reminder Here</div>
+			<div class="datetimecontainer">
+				<br/><br/><label for="date">Date:</label><input type="text" id="datepicker" name="reminder_date"/>
+				<label for="time">Time:</label><input type="text" id="timepicker" name="reminder_time" size="6"/><br/>
+				<br/><label for="reminder">Reminder:</label><textarea name="reminder_text" id="reminder_text" rows="8" cols="33"></textarea><br/>
+			</div> <!-- datetimecontainer -->
+		</fieldset>
 			<div id="lower">
 				<input type="submit" class="submitreset" id="submit" name="submit" value="Add Reminder"/>
 				<input type="reset" class="submitreset" id ="reset" name="reset" value="Reset"/>
 			</div> <!--lower-->
-		</fieldset>
+
 	</form> 
 
 	</div> <!-- end blurbcontainerleft -->
 
 	<div class="blurbcontainerright">
-	 <div class="blurbheader"> Messages </div>
+	 <div class="blurbheader"> Today's Messages </div>
 	<?php
 	        $sql = "SELECT message_stream, message_type, s_uid, uid, message_number, image_message_path, typed_message_text, message_time, message_date
               FROM messages 
