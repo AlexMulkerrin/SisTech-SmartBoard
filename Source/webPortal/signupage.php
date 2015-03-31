@@ -27,15 +27,15 @@
 			<label for="password">Password:</label><input type="password" id="password" name="password"></br>
 			<label for="password">Email:</label><input type="email" id="email" name="email"></br>
 			<div id="lower">
-				<input type="submit" class="submitreset" id="submit" name="submit" value="Sign In"/>
+				<input type="submit" class="submitreset" id="submit" name="submit" value="Sign Up"/>
 				<input type="reset" class="submitreset" id ="reset" name="reset" value="Reset"/>
 			</div> <!--lower-->
 		</fieldset>
 	   </form> 
 	   </div>
+	   <?php include "footer.php"?>
 	 </div> <!-- content container -->
 	</div> <!-- innercontainer -->
-	
 	</div> <!-- container -->
 </body>
 </html>

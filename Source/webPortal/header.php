@@ -5,16 +5,16 @@
 	<div class="navigation">
 	 <div class="navmenu">
 		<div class="linkbox">
-			<a href="index.php">Home</a>				
-		</div>
-		<div class="linkbox">
-			<a href="index.php">Sign In</a>				
+			<a href="supportedindividualpage.php">Dashboard</a>				
 		</div>
 		<div class="linkbox">
 			<a href="signupage.php">Sign Up</a>				
 		</div>
 		<div class="linkbox">
-			<a href="supportedindividualpage.php">Dashboard</a>				
+			<a href="index.php">Sign In</a>				
+		</div>
+		<div class="linkbox">
+			<a href="index.php">Home</a>				
 		</div>
 	 </div> <!-- navmenu-->
 	</div> <!-- navigation -->

@@ -28,10 +28,12 @@
 			<input type="reset" class="submitreset" id ="reset" name="reset" value="Reset"/>
 			</div> <!--lower-->
 		</fieldset></div>
-		</div> <!-- blurbheaderright-->
-	</form> 
-	
+	   </form> 
+	   <?php include "footer.php"?>
 	  </div> <!-- content container -->
+
+	
+	
 	 </div> <!-- inner container -->
 	</center></div> <!-- container -->
 	

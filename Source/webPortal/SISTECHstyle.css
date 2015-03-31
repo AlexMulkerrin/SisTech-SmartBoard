@@ -46,6 +46,7 @@ fieldset
 	width: 600px;
 	border :1px solid #1c3f95;
 	border: none;
+	margin-left: 50px;
 	/*padding: 10px;*/
 }
 
@@ -118,12 +119,6 @@ tr
 
 /*styling for HTML element classes*/
 
-.fieldsetcontainer
-{
-	position: relative;
-	float: right;
-}
-
 .datetimecontainer
 {
 	position: relative;
@@ -181,7 +176,7 @@ tr
 
 .linkbox
 {
-	width: 70px;
+	width: 80px;
 	position: relative;
 	margin-left: 10px;
 	float: right;
@@ -195,6 +190,10 @@ tr
 
 }
 
+.lower
+{
+	margin-left: 50px;
+}
 .banner
 {
 	height: 200px;
@@ -278,40 +277,6 @@ tr
 	margin-left: 10px;
 }
 
-.projecttable
-{
-	padding-left: 10px;
-	width :930px;
-	border: none;
-}
-
-/*NOTE: The text in the accordion is deliberately not blue to create a visual delineation from the main page content.*/
-.accordtable
-{
-	width: 310px;
-}
-
-.accordth
-{
-	width: 150px;
-	position: relative;
-	float: left;
-	text-align: center;
-	vertical-align: middle;
-}
-
-.accordtd
-{
-	border:none;
-}
-
-.accordimage
-{
-	 width: 100px;
-	 height: 50px;
-	 float: left;
-}
-
 .submitreset
 {
 /*I created this class for both of the submit and reset buttons 
@@ -328,54 +293,29 @@ on my "contact us" form */
 	border :2px solid #6699FF;
 }
 
-.contactformcontainer
-{
-	width: 580px;
-	padding: 5px 5px 10px 5px;
-	position: relative;
-	float: left;
-	border-radius: 5px;
-	box-shadow: 5px 5px 5px #888888;
-}
-
-.formlogoscontainer
-{
-	width: 310px;
-	margin-left: 30px;
-	margin-top: 10px;
-	position: relative;
-	float: right;
-}
-
 .footer
 {
-	padding-top: 10px;
+	padding-top: 20px;
 	height: 200px;
 	position: relative;
 	float: left;
 	width: 940px;
-	background-image: url(images/AssignmentFooter.jpg);
-	background-repeat: repeat-x;
-}
-
-.footerleft
-{
-	height: 185px;
-	width: 700px;
-	/*note shorthand coding of padding attributes top-right-bottom-left*/
-	padding: 5px 5px 10px 5px;
-	position: relative;
-	float: left;
+/*	background-image: url(images/AssignmentFooter.jpg);
+	background-repeat: repeat-x;*/
+	text-align: left;
 }
 
 .footerright
 {
-	height: 185px;
-	width: 200px;
-	padding: 5px 5px 10px 5px;
+	width: 430px;
 	position: relative;
 	float: right;
+	text-align: right;
+	font-family: verdana;
+	font-size: 10px;
+	color: #1c3f95;
 }
+
 
 .ui-datepicker 
 {
