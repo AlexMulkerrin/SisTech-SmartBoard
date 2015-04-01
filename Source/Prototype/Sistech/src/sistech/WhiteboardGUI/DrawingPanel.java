@@ -75,6 +75,7 @@ public class DrawingPanel extends JPanel {
             String message="message failed";
             try {
                 sistech.MessageImage.saveMessage(drawingCanvas, 1);
+                message = "message sent";
             } catch (Exception ex) {
                 message="message failed";
             }
