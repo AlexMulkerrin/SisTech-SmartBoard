@@ -136,11 +136,13 @@ public class DBInformation
             ResultSet rs = MySQLConnection.stmtGetQuery(conn, "SELECT " + Columns + " FROM " + Db + " WHERE s_uid = " + S_uid 
                                                         + " AND uid = " + uid + " AND message_Stream = " + messageStream 
                                                         + " ORDER BY " + order);
-            // Determine the number of messages so that the array size can be specified ready for returning 
-            rs.last();
-            int size = rs.getRow();
+            
+            int size = 0;
+            while(rs.next())
+            {
+                size++;
+            }
             messages = new String[size][5];
-            //Loop through the result set of messages while on each iteration placing the message text, time, date and user id into the appropriate array locations
             rs.first();
             int i=0;
             while( rs.next())
