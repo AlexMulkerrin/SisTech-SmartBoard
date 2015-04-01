@@ -133,7 +133,9 @@ public class DrawingPanel extends JPanel {
                 p2 = p1;
                 p1 = p;
                 if (p1 != null && p2 != null) {
-                    g.drawLine(p1.x, p1.y, p2.x, p2.y);
+                    Graphics2D g2 = (Graphics2D) g;
+                    g2.setStroke(new BasicStroke(10));
+                    g2.drawLine(p1.x, p1.y, p2.x, p2.y);
                 }
             }
         }    
