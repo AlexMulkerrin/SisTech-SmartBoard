@@ -85,7 +85,7 @@
 		action="writeReminder.php"> 
 		<fieldset><div class="blurbheader"><br/>Type In A New Reminder Here</div>
 			<div class="datetimecontainer">
-				<br/><br/><label for="date">Date:</label><input type="text" id="datepicker" name="reminder_date"/>
+				<br/><br/><label for="date">Date:</label><input type="text" id="datepicker" name="reminder_date" size="8"/>
 				<label for="time">Time:</label><input type="text" id="timepicker" name="reminder_time" size="6"/><br/>
 				<br/><label for="reminder">Reminder:</label><textarea name="reminder_text" id="reminder_text" rows="8" cols="33"></textarea><br/>
 			</div> <!-- datetimecontainer -->
@@ -140,10 +140,6 @@
 		</fieldset>
 	</form> 
 	
-	<?php
-		//close database
-		$conn->close();
-	?>
 	</div>
  <?php include "footer.php"?>           
   </div> <!-- content container -->

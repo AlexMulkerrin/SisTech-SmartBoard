@@ -3,8 +3,7 @@ if ($_POST){
 
 $message_text=stripslashes($_POST['message_text']);
 $message_date=date(YYYYMMDD);
-$message_time=mktime(hour,minute,second);
-
+$message_time=date("H:i");
 
 $servername = "mysql.abdn.ac.uk";
 $port = 3306;
