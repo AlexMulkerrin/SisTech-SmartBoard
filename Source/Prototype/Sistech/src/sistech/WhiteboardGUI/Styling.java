@@ -28,6 +28,8 @@ public class Styling {
             setFont(new Font(font, style, size));
             setMargin(new Insets(20,20,20,20));
             setEditable(false);
+            setLineWrap(true);
+            setWrapStyleWord(true);
         }
     }
     
@@ -36,6 +38,38 @@ public class Styling {
             super(text);
             setFont(new Font(font, style, size));
             
+        }
+    }
+    
+    public static class STickBox extends JButton {
+        Boolean ticked = false;
+        
+        @Override
+        public void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            int height = this.getHeight();
+            int width = this.getWidth();
+            
+            if (ticked) {
+                g.setColor(Color.black);
+                g.fillRect(width/5,height/5,width*3/5,height*3/5);
+                g.setColor(Color.white);
+                g.fillRect(width/4,height/4,width*2/4,height*2/4);
+                
+                g.setColor(Color.green);
+                Graphics2D g2 = (Graphics2D) g;
+                g2.setStroke(new BasicStroke(10));
+                g2.drawLine(width*4/5,height/6, width/5,height*5/6);
+                g2.drawLine(width/5,height*5/6, width/6,height*4/6);
+                
+            } else {
+                g.setColor(Color.red);
+                g.fillRect(width/5,height/5,width*3/5,height*3/5);
+                g.setColor(Color.white);
+                g.fillRect(width/4,height/4,width*2/4,height*2/4);
+                
+            }
+
         }
     }
     
