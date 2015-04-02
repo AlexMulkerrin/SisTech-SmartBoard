@@ -27,7 +27,7 @@ class MessagePanel extends JPanel implements Runnable  {
                 
         add(title, BorderLayout.NORTH);
         messageContainer = new JPanel();
-        messageContainer.setLayout(new GridLayout(5,0,5,5));
+        messageContainer.setLayout(new GridLayout(3,0,5,5));
         add(messageContainer, BorderLayout.CENTER);
 
         Thread t = new Thread(this);
@@ -43,10 +43,9 @@ class MessagePanel extends JPanel implements Runnable  {
             messageContainer.removeAll();
             
             JPanel headers = new JPanel();
-            headers.setLayout(new GridLayout(0,3));
-            headers.add(new Styling.SLabel("Message"));
-            headers.add(new Styling.SLabel("Sender"));
-            headers.add(new Styling.SLabel("Time"));
+            headers.setLayout(new GridLayout(0,2));
+            headers.add(new Styling.SLabel("You sent"));
+            headers.add(new Styling.SLabel("they replied"));
 
             messageContainer.add(headers);
 
@@ -74,21 +73,20 @@ class MessagePanel extends JPanel implements Runnable  {
     
     public class MessageBlock extends JPanel {
         public MessageBlock(String sender, String time, String date, String text, String streamID) {
-            setLayout(new GridLayout(0,3));
+            setLayout(new GridLayout(0,2));
             
-                       
-            JTextArea messageContainer = new Styling.STextArea(text);
-            add(messageContainer);
+            ImageIcon icon = new ImageIcon(getClass().getResource("/images/120150401132143.jpg"));
             
-            JLabel nameContainer;
-            if (Integer.parseInt(sender) == 1) {
-                nameContainer = new Styling.SLabel("John Smith");
-            } else {
-                nameContainer = new Styling.SLabel("user "+sender);
-            }
-            add(nameContainer);
+            JLabel label = new JLabel(icon);
+            add(label);
             
-            String contents = time+" "+date;
+            String[] timeParts = time.split(":");
+            String timeNew = timeParts[0]+":"+timeParts[1]+"am today:";
+            
+            //String[] dateParts = date.split("-");
+            //String dateNew = dateParts[2]+"rd of "+dateParts[1];
+            
+            String contents = "John Smith said at "+timeNew+"\n"+text;
             JTextArea timeContainer = new Styling.STextArea(contents);
             add(timeContainer);
             
