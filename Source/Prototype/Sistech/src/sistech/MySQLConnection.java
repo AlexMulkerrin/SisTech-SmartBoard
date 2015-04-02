@@ -1,6 +1,6 @@
 package sistech;
 
-//STEP 1. Import required packages
+//Import required packages
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -9,27 +9,23 @@ public class MySQLConnection
 {
    // JDBC driver name and database URL
    static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";  
-   //static final String DB_URL = "jdbc:mysql://localhost/menagerie"; //Test database url on home computer
    static final String DB_URL = "jdbc:mysql://mysql.abdn.ac.uk:3306/t02hah14_sistech";
 
    //  Database credentials
    static final String USER = "t02hah14_sistech";
-   //static final String USER = "root"; //Test user name on home computer
    static final String PASS = "sistech";
-   //static final String PASS = "password";  //Test password on home computer
    
    static ResultSet rs;
-   static Statement st;
+   static Statement st = null;
+   static Connection conn = null;
    
    public static Connection connConnect()
     {
-    Connection conn = null;
-    Statement stmt = null;
     try{
-        //STEP 2: Register JDBC driver
+        //Register JDBC driver
         Class.forName("com.mysql.jdbc.Driver");
 
-        //STEP 3: Open a connection
+        //Open a connection
         conn = DriverManager.getConnection(DB_URL,USER,PASS);
       
      
@@ -40,7 +36,6 @@ public class MySQLConnection
         se.printStackTrace();
     }catch(Exception e)
     {
-        //Handle errors for Class.forName
         e.printStackTrace();
     }
     return conn;
@@ -48,9 +43,6 @@ public class MySQLConnection
    
    public static ResultSet stmtGetQuery(Connection conn, String query)
    {
-       rs = null;
-       st = null;
-       
        try
        {
             st = conn.createStatement();
@@ -66,8 +58,6 @@ public class MySQLConnection
    
    public static void stmtAmmendQuery(Connection conn, String query)
    {
-       st = null;
-       
        try
        {
             st = conn.createStatement();
@@ -79,35 +69,29 @@ public class MySQLConnection
        }
    }
    
-   public static void connDisconnect(Connection conn)
+   public static void Disconnect()
    {
-       try 
+        try 
        {
-            conn.close();
-       } catch (SQLException ex) 
-       {
-            //Handle errors for JDBC
-            ex.printStackTrace();
-       }
-   }
-   
-   public static void stmtDisconnect()
-   {
-       try
-       {
-           if (rs != null)
-           {
-               rs.close();
-           }
            if (st != null);
            {
                st.close();
            }
        }
-       catch(SQLException ex)
+        catch(SQLException ex)
        {
            ex.printStackTrace();
        }
-               
+        try
+        {
+           if (conn != null) 
+           {
+               conn.close();
+           }
+       }
+        catch(SQLException ex)
+       {
+           ex.printStackTrace();
+       }    
    }
 }//end MySQLConnection
