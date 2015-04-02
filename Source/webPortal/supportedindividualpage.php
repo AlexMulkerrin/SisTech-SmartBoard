@@ -44,7 +44,7 @@
 		/*
 		$sql = "SELECT rem_table_key, uid, reminder_date, reminder_time_by, reminder_text, reminder_task_completed FROM reminders
 		WHERE s_uid =$userid AND reminder_task_completed =0
-		ORDER BY reminder_date ASC , reminder_time_by ASC
+		ORDER BY reminder_time_by
 		LIMIT 0 , 30";
 		*/
 		$sql = "SELECT rem_table_key, uid, reminder_date, reminder_time_by, reminder_text, reminder_task_completed FROM reminders

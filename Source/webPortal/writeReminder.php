@@ -4,8 +4,9 @@ $reminder_date=stripslashes($_POST['reminder_date']);
 $reminder_time=stripslashes($_POST['reminder_time']);
 $reminder_text=stripslashes($_POST['reminder_text']);
 $date_date = date('Ymd', strtotime($reminder_date));
-$time_time = date("H:i:s", strtotime($reminder_time[4]));
-
+$reminder_time=str_replace(":", "", $reminder_time);
+$time_time=(int)$reminder_time;
+$time_time*=100;
 $servername = "mysql.abdn.ac.uk";
 $username = "t02hah14_sistech";
 $password = "sistech";
@@ -29,6 +30,7 @@ if ($conn->query($sql) === TRUE) {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
 $conn->close();
+
 }
 
 //return to calling php page
