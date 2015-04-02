@@ -27,7 +27,7 @@ class MessagePanel extends JPanel implements Runnable  {
                 
         add(title, BorderLayout.NORTH);
         messageContainer = new JPanel();
-        messageContainer.setLayout(new GridLayout(3,0,5,5));
+        messageContainer.setLayout(new GridLayout(3,2,5,5));
         add(messageContainer, BorderLayout.CENTER);
 
         Thread t = new Thread(this);
@@ -42,12 +42,12 @@ class MessagePanel extends JPanel implements Runnable  {
             // repopulate message list
             messageContainer.removeAll();
             
-            JPanel headers = new JPanel();
-            headers.setLayout(new GridLayout(0,2));
-            headers.add(new Styling.SLabel("You sent"));
-            headers.add(new Styling.SLabel("they replied"));
+            //JPanel headers = new JPanel();
+            //headers.setLayout(new GridLayout(0,2));
+            messageContainer.add(new Styling.SLabel("You sent"));
+            messageContainer.add(new Styling.SLabel("they replied"));
 
-            messageContainer.add(headers);
+            //messageContainer.add(headers);
 
             for (int i=0; i<messages.length; i++) {
                 
@@ -56,8 +56,9 @@ class MessagePanel extends JPanel implements Runnable  {
                 String date = messages[i][2];
                 String sender = messages[i][3];
                 String streamID = messages[i][4];
+                String messageType = messages[i][5];
                 if (text!=null) {
-                    messageContainer.add(new MessageBlock(sender,time,date,text,streamID));
+                    messageContainer.add(new MessageBlock(sender,time,date,text,streamID,messageType));
                 }
             }
             
@@ -72,13 +73,19 @@ class MessagePanel extends JPanel implements Runnable  {
     }
     
     public class MessageBlock extends JPanel {
-        public MessageBlock(String sender, String time, String date, String text, String streamID) {
-            setLayout(new GridLayout(0,2));
+        public MessageBlock(String sender, String time, String date, String text, String streamID, String messageType) {
+            setLayout(new GridLayout(0,1));
             
-            ImageIcon icon = new ImageIcon(getClass().getResource("/images/120150401132143.jpg"));
+            if (messageType.equals("I")) {
+                System.out.println(text);
+                ImageIcon icon = new ImageIcon(getClass().getResource("/"+text));
             
-            JLabel label = new JLabel(icon);
-            add(label);
+                JLabel label = new JLabel(icon);
+                add(label);
+            } else {
+            
+            
+            
             
             String[] timeParts = time.split(":");
             String timeNew = timeParts[0]+":"+timeParts[1]+"am today:";
@@ -89,7 +96,7 @@ class MessagePanel extends JPanel implements Runnable  {
             String contents = "John Smith said at "+timeNew+"\n"+text;
             JTextArea timeContainer = new Styling.STextArea(contents);
             add(timeContainer);
-            
+            }
             //JButton respondButton = new Styling.SButton("Respond"+streamID);
             //add(respondButton);
         }
