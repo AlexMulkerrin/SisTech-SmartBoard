@@ -55,7 +55,6 @@ class TaskPanel extends JPanel  implements Runnable {
             headers.add(new Styling.SLabel("Tick list"));
 
             taskContainer.add(headers);
-            
             for (int i=0; i<reminders.length; i++) {
 
                 String text = reminders[i][0];
@@ -85,7 +84,7 @@ class TaskPanel extends JPanel  implements Runnable {
             JTextArea dateContainer = new Styling.STextArea(time);
             add(dateContainer);
 
-            JButton tickBox = new Styling.SButton("id:"+key);
+            JButton tickBox = new Styling.STickBox();
             tickBox.addActionListener(new CheckBoxListener(key));
             add(tickBox);
         }
@@ -101,8 +100,8 @@ class TaskPanel extends JPanel  implements Runnable {
         @Override
         public void actionPerformed(ActionEvent event) {
             // change text of button when triggered
-            JButton source = (JButton) event.getSource();
-            source.setText("Done!");
+            Styling.STickBox source = (Styling.STickBox) event.getSource();
+            source.ticked=true;
             System.out.println("Clicked check box for"+ taskID);
             Thread t = new Thread(new TaskSender(taskID));
             t.start();
