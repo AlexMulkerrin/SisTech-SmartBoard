@@ -24,10 +24,9 @@ public class DBInformation
      * reminders[i][1] contains the reminder associated time
      * reminders[i][2] containes the reminder unique table key 
      */
+    public static String[][] reminders;
     public static String[][] getReminder(String date) 
     { 
-        String[][] reminders = null;
-        
         String Columns = "rem_table_key, uid, reminder_date, reminder_time_by, reminder_text, reminder_task_completed";
         String Db = "reminders";
         int S_uid = 1;
@@ -38,11 +37,11 @@ public class DBInformation
         
         Connection conn = MySQLConnection.connConnect();
         
-        try 
-        {
-            ResultSet rs = MySQLConnection.stmtGetQuery(conn, "SELECT " + Columns + " FROM " + Db + " WHERE s_uid = " + S_uid 
+        try (ResultSet rs = MySQLConnection.stmtGetQuery(conn, "SELECT " + Columns + " FROM " + Db + " WHERE s_uid = " + S_uid 
                                                         + " AND reminder_task_completed = " + TaskComplete + " ORDER BY " 
-                                                        + OrderBy + " LIMIT " + Limit1 + ", " + Limit2);
+                                                        + OrderBy + " LIMIT " + Limit1 + ", " + Limit2))
+        {
+            
             int size = 0;
             while(rs.next())
             {
@@ -54,7 +53,7 @@ public class DBInformation
                 
             }
             reminders = new String[size][3];
-            rs.first();
+            rs.beforeFirst();
             int i=0;
             while( rs.next())
             {
@@ -66,14 +65,13 @@ public class DBInformation
                     i++;
                 }
             }
-            
         } catch (SQLException ex) 
         {
             ex.printStackTrace(System.out);
         }
         
-        MySQLConnection.connDisconnect(conn);
-        MySQLConnection.stmtDisconnect();
+        
+        MySQLConnection.Disconnect(conn);
         return reminders;
     }
     
@@ -99,7 +97,6 @@ public class DBInformation
         }
         catch(Exception e)
         {
-            e.printStackTrace();
         }
         
         
@@ -116,15 +113,16 @@ public class DBInformation
      * messages[i][3] contins the unique id of the message sender
      * messages[i][4] contains the unique message stream id
      */
+    public static String[][] messages;
     public static String[][] getMessages()
     {
         
-        String[][] messages = null;
+        
         String Columns = "message_stream, message_type, s_uid, uid, message_number, image_message_path"
                             + ", typed_message_text, message_time, message_date";   //The columns that of data that individual instances are to be extracted from
         String Db = "messages"; //The database that the query is applied to
         int S_uid = 1;  //The support users personal identification number
-        int uid = 1;    //T
+        int uid = 1;    //The supported users personal identification number
         String messageStream = "message_stream"; // The conversation unique identification number
         String order = "message_number";    //The order number of each message
         
@@ -133,6 +131,7 @@ public class DBInformation
         try 
         {
             //The sql query to be sent 
+            
             ResultSet rs = MySQLConnection.stmtGetQuery(conn, "SELECT " + Columns + " FROM " + Db + " WHERE s_uid = " + S_uid 
                                                         + " AND uid = " + uid + " AND message_Stream = " + messageStream 
                                                         + " ORDER BY " + order);
@@ -142,25 +141,38 @@ public class DBInformation
             {
                 size++;
             }
-            messages = new String[size][5];
-            rs.first();
+            messages = new String[size][6];
+            rs.beforeFirst();
             int i=0;
             while( rs.next())
             {
-                    messages[i][0] = rs.getString("typed_message_text");
-                    messages[i][1] = rs.getString("message_time");
-                    messages[i][2] = rs.getString("message_date");
-                    messages[i][3] = rs.getString("uid");
-                    messages[i][4] = rs.getString("message_stream");
-                    i++;
+                if(rs.getString("message_type").equals("T"))
+                {
+                        messages[i][0] = rs.getString("typed_message_text");
+                        messages[i][1] = rs.getString("message_time");
+                        messages[i][2] = rs.getString("message_date");
+                        messages[i][3] = rs.getString("uid");
+                        messages[i][4] = rs.getString("message_stream");
+                        messages[i][5] = rs.getString("message_type");
+                }
+                else if(rs.getString("message_type").equals("I"))
+                {
+                        messages[i][0] = rs.getString("image_message_path");
+                        messages[i][1] = rs.getString("message_time");
+                        messages[i][2] = rs.getString("message_date");
+                        messages[i][3] = rs.getString("uid");
+                        messages[i][4] = rs.getString("message_stream");
+                        messages[i][5] = rs.getString("message_type");
+                }
+                i++;
             }
-            
         } catch (SQLException ex) 
         {
         }
         //Call sql connection and pass on the query statement 
-        MySQLConnection.connDisconnect(conn);
-        MySQLConnection.stmtDisconnect();
+        
+        
+        MySQLConnection.Disconnect(conn);
         return messages;
     }
     /*
@@ -187,7 +199,6 @@ public class DBInformation
         }
         catch(Exception e)
         {
-            e.printStackTrace();
         }
     }
 }
