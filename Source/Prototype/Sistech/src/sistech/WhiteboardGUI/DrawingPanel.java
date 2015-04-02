@@ -81,8 +81,8 @@ public class DrawingPanel extends JPanel {
             }
             
             // not sure about having this always happening, if it fails, keep image?
-            //points.clear();
-            //drawingCanvas.repaint();
+            points.clear();
+            drawingCanvas.repaint();
         
             sendButton.setText(message);
             sendButton.setEnabled(true);
