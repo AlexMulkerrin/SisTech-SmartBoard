@@ -13,9 +13,14 @@ package sistech;
 
 import java.sql.*;
 import java.util.Calendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class DBInformation 
 {
+    static String[][] messages;
+    static String[][] reminders;
+    static Connection conn;
     /*
      * Method to get the reminders from the sql database for a specific date which is passed as a parameter when the method is called.
      * The method will return an 2D String array called reminders with the following format
@@ -24,54 +29,52 @@ public class DBInformation
      * reminders[i][1] contains the reminder associated time
      * reminders[i][2] containes the reminder unique table key 
      */
-    public static String[][] reminders;
     public static String[][] getReminder(String date) 
     { 
         String Columns = "rem_table_key, uid, reminder_date, reminder_time_by, reminder_text, reminder_task_completed";
         String Db = "reminders";
+        String OrderBy = "reminder_date ASC, reminder_time_by ASC";
         int S_uid = 1;
         int TaskComplete = 0;
-        String OrderBy = "reminder_date ASC, reminder_time_by ASC";
         int Limit1 = 0;
         int Limit2 = 30;
         
-        Connection conn = MySQLConnection.connConnect();
+        conn = MySQLConnection.connConnect();
         
-        try (ResultSet rs = MySQLConnection.stmtGetQuery(conn, "SELECT " + Columns + " FROM " + Db + " WHERE s_uid = " + S_uid 
-                                                        + " AND reminder_task_completed = " + TaskComplete + " ORDER BY " 
-                                                        + OrderBy + " LIMIT " + Limit1 + ", " + Limit2))
+        try 
         {
-            
-            int size = 0;
-            while(rs.next())
-            {
-                
-                if( date.equals(rs.getString("reminder_date")))
+            ResultSet rsr = MySQLConnection.stmtGetQuery(conn, "SELECT " + Columns + " FROM " + Db + " WHERE s_uid = " + S_uid 
+                                                        + " AND reminder_task_completed = " + TaskComplete + " ORDER BY " 
+                                                        + OrderBy + " LIMIT " + Limit1 + ", " + Limit2);
+                int size = 0;
+                while(rsr.next())
                 {
-                size++;
+                    if( date.equals(rsr.getDate("reminder_date").toString()))
+                    {
+                    size++;
+                    }
+
                 }
-                
-            }
-            reminders = new String[size][3];
-            rs.beforeFirst();
-            int i=0;
-            while( rs.next())
-            {
-                if( date.equals(rs.getString("reminder_date")))
-                {   
-                    reminders[i][0] = rs.getString("reminder_text");
-                    reminders[i][1] = rs.getString("reminder_time_by");
-                    reminders[i][2] = rs.getString("rem_table_key");
-                    i++;
+                reminders = new String[size][3];
+                rsr.beforeFirst();
+                int i=0;
+                while( rsr.next())
+                {
+                    if( date.equals(rsr.getDate("reminder_date").toString()))
+                    {   
+                        reminders[i][0] = rsr.getString("reminder_text");
+                        reminders[i][1] = rsr.getTime("reminder_time_by").toString();
+                        reminders[i][2] = rsr.getString("rem_table_key");
+                        i++;
+                    }
                 }
-            }
-        } catch (SQLException ex) 
+        } 
+        catch (SQLException ex) 
         {
             ex.printStackTrace(System.out);
         }
         
-        
-        MySQLConnection.Disconnect(conn);
+        MySQLConnection.Disconnect();
         return reminders;
     }
     
@@ -82,7 +85,7 @@ public class DBInformation
      */
     public static void editReminder(String key, boolean check)
     {
-        Connection conn = MySQLConnection.connConnect();
+        conn = MySQLConnection.connConnect();
         
         try
         {
@@ -113,68 +116,66 @@ public class DBInformation
      * messages[i][3] contins the unique id of the message sender
      * messages[i][4] contains the unique message stream id
      */
-    public static String[][] messages;
+    
     public static String[][] getMessages()
     {
-        
-        
         String Columns = "message_stream, message_type, s_uid, uid, message_number, image_message_path"
-                            + ", typed_message_text, message_time, message_date";   //The columns that of data that individual instances are to be extracted from
+                         + ", typed_message_text, message_time, message_date";   //The columns that of data that individual instances are to be extracted from
         String Db = "messages"; //The database that the query is applied to
-        int S_uid = 1;  //The support users personal identification number
-        int uid = 1;    //The supported users personal identification number
         String messageStream = "message_stream"; // The conversation unique identification number
         String order = "message_number";    //The order number of each message
+        int S_uid = 1;  //The support users personal identification number
+        int uid = 1;    //The supported users personal identification number
         
-        Connection conn = MySQLConnection.connConnect();
+        conn = MySQLConnection.connConnect();
         
         try 
         {
-            //The sql query to be sent 
-            
-            ResultSet rs = MySQLConnection.stmtGetQuery(conn, "SELECT " + Columns + " FROM " + Db + " WHERE s_uid = " + S_uid 
-                                                        + " AND uid = " + uid + " AND message_Stream = " + messageStream 
-                                                        + " ORDER BY " + order);
-            
+        //The sql query to be sent 
+        ResultSet rsm = MySQLConnection.stmtGetQuery(conn, "SELECT " + Columns + " FROM " + Db + " WHERE s_uid = " + S_uid 
+                                                    + " AND uid = " + uid + " AND message_Stream = " + messageStream 
+                                                    + " ORDER BY " + order);
             int size = 0;
-            while(rs.next())
+            while(rsm.next())
             {
                 size++;
             }
             messages = new String[size][6];
-            rs.beforeFirst();
+            rsm.beforeFirst();
             int i=0;
-            while( rs.next())
+            while( rsm.next())
             {
-                if(rs.getString("message_type").equals("T"))
+                switch (rsm.getString("message_type")) 
                 {
-                        messages[i][0] = rs.getString("typed_message_text");
-                        messages[i][1] = rs.getString("message_time");
-                        messages[i][2] = rs.getString("message_date");
-                        messages[i][3] = rs.getString("uid");
-                        messages[i][4] = rs.getString("message_stream");
-                        messages[i][5] = rs.getString("message_type");
-                }
-                else if(rs.getString("message_type").equals("I"))
-                {
-                        messages[i][0] = rs.getString("image_message_path");
-                        messages[i][1] = rs.getString("message_time");
-                        messages[i][2] = rs.getString("message_date");
-                        messages[i][3] = rs.getString("uid");
-                        messages[i][4] = rs.getString("message_stream");
-                        messages[i][5] = rs.getString("message_type");
+                    case "T":
+                        messages[i][0] = rsm.getString("typed_message_text");
+                        messages[i][1] = rsm.getTime("message_time").toString();
+                        messages[i][2] = rsm.getDate("message_date").toString();
+                        messages[i][3] = Integer.toString(rsm.getInt("uid"));
+                        messages[i][4] = rsm.getString("message_stream");
+                        messages[i][5] = rsm.getString("message_type");
+                        break;
+                    case "I":
+                        messages[i][0] = rsm.getString("image_message_path");
+                        messages[i][1] = rsm.getTime("message_time").toString();
+                        messages[i][2] = rsm.getDate("message_date").toString();
+                        messages[i][3] = Integer.toString(rsm.getInt("uid"));
+                        messages[i][4] = rsm.getString("message_stream");
+                        messages[i][5] = rsm.getString("message_type");
+                        break;
                 }
                 i++;
             }
-        } catch (SQLException ex) 
+        } 
+        catch (SQLException ex) 
         {
+            ex.printStackTrace();
         }
         //Call sql connection and pass on the query statement 
-        
-        
-        MySQLConnection.Disconnect(conn);
+        MySQLConnection.Disconnect();
         return messages;
     }
+    
     /*
      * Method to add a new handwritten message to the sql database
      * when called the parameters imagePath of type string and mStream of type int must be passed. 
@@ -189,13 +190,12 @@ public class DBInformation
         Calendar calendar = Calendar.getInstance();
         java.sql.Date mDate = new java.sql.Date(calendar.getTime().getTime());
         
-        Connection conn = MySQLConnection.connConnect();
+        conn = MySQLConnection.connConnect();
         
         try
         {
             MySQLConnection.stmtAmmendQuery(conn, "INSERT INTO messages(message_stream,s_uid,uid,message_type,image_message_path,message_time,message_date)"   
-                    + " VALUES ('"+mStream+"','"+Suid+"','"+uid+"','"+mType+"','"+imagePath+"','"+mTime+"','"+mDate+"')");
-                   //  + "VALUE (" + "\"" + mStream + "\"" + S_uid + "\"" + uid + "\"" + mType + "\"" + imagePath + "\"" + ");");                               
+                    + " VALUES ('"+mStream+"','"+Suid+"','"+uid+"','"+mType+"','"+imagePath+"','"+mTime+"','"+mDate+"')");                              
         }
         catch(Exception e)
         {
