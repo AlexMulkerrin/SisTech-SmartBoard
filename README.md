@@ -26,10 +26,10 @@ Screenshots containing:
 * updated Smartboard interface
 
 Source containing:
-* a file called html_obsolete, guess we don't need that
 * directory for the mySQL database code
 * directory for the Smartboard prototype software
 * directory for the webPortal code
+* ignore the directory called html_obsolete, old code
 
 ##Usage
 
