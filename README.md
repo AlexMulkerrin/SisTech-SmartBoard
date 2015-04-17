@@ -40,11 +40,11 @@ The database files which can be seen in the directory are currently being hosted
 The webportal files are already hosted on the University webpages and can be accessed
 [here](homepages.abdn.ac.uk/hilary.hastings.14/acsw).
 
-## Known problems:
+## Known problems
 
 The uploading of handwritten messages as images is not available, ideally these would be stored on the server database so that they can be downloaded and shown on Smartboard and web portal. 
 
-The database soetimes fails to return all the results of a query, the Smartboard rechecks the information every 30 seconds so waiting until the next poll should display the information correctly.
+The database sometimes fails to return all the results of a query, the Smartboard rechecks the information every 30 seconds so waiting until the next poll should display the information correctly.
 
 The interfaces of the Smartboard and webportal are designed only with the University lab machines in mind. Using a smaller resolution display may result in poor layout of the displays.
 
