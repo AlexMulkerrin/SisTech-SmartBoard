@@ -1,5 +1,10 @@
 # SisTech-SmartBoard
-Masters programming project
+Masters programming project for CS5563 (2014-15): Advanced Computer Science Workshop
+
+The Assisted Living Smartboard prototype has been developed using a data-centric architecture. It has three components:
+* Java application running on a wall-mounted touchscreen for the Supported Individual
+* database 
+* web portal for the Network of Support
 
 ##Authors
 Alex, Matthew, Hillary, Attah and Tunde.
@@ -45,4 +50,4 @@ The interfaces of the Smartboard and webportal are designed only with the Univer
 
 While a database table of network of support members and supported individuals exists it is not used within the Smartboard code at present. 
 
-Can extra support network profiles be created? Only one at the moment.
+Only one support network profile exists at the moment and it is not necessary to login to see dashboard.
