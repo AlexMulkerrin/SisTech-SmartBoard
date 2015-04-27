@@ -1,3 +1,5 @@
+<!-- Initial HTML Code by Charles Attah Ademu. Converted to php and styled by Hilary Hastings, April 2015.
+ code references www.stackexchange.com, www.w3c.schools.com -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -21,6 +23,7 @@
 		<div align="right">
 		
 		<fieldset>
+			<!-- form for user sign-up, skeleton at present for showcase prototype, no database writes yet -->
 			<label for="firstname">First name:</label><input type="text" id="firstname" name="firstname"></br>
 			<label for="surname">Surname:</label><input type="text" id="surname" name="surname"></br>
 			<label for="username">Username:</label><input type="text" id="username" name="username"></br>

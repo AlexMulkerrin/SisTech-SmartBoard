@@ -1,4 +1,7 @@
-﻿*{
+﻿/*
+Hilary Hastings, April 2015, styling.
+*/
+*{
 /*remove default margins and padding to ensure site looks the same across different browsers*/
 	margin: 0;
 	padding: 0;
@@ -158,9 +161,7 @@ tr
 {
 	height: 40px;
 	position: relative;
-	/*float: left;*/
 	width: 940px;
-	/*padding-right: 25px;*/
 	background-image: url(images/AssignmentNavigation.jpg);
 	background-repeat: repeat-x;
 	clear:both;
@@ -170,7 +171,6 @@ tr
 {
 	height: 30px;
 	width: 940px;
-	/*padding-left: 5px;*/
 	clear:both;
 }
 
@@ -198,7 +198,6 @@ tr
 {
 	height: 200px;
 	position: relative;
-	/*float: left;*/
 	width: 940px;
 	margin-top: 50px;
 	background-image: url(images/SistechBanner.jpg);
@@ -253,7 +252,6 @@ tr
 	color: #1c3f95;
 	padding-top: 10px;
 	padding-bottom: 10px;
-	/*margin-left: 10px;*/
 	text-align: left;
 }
 
@@ -265,7 +263,6 @@ tr
 	color: #1c3f95;
 	padding-top: 10px;
 	padding-bottom: 10px;
-	/*margin-left: 10px;*/
 	text-align: right;
 }
 
@@ -279,9 +276,6 @@ tr
 
 .submitreset
 {
-/*I created this class for both of the submit and reset buttons 
-so I could style them to look the same as they sit side by side
-on my "contact us" form */
 	margin-left: 15px;
 	font-family: verdana;
 	font-size: 12px;
@@ -300,8 +294,6 @@ on my "contact us" form */
 	position: relative;
 	float: left;
 	width: 940px;
-/*	background-image: url(images/AssignmentFooter.jpg);
-	background-repeat: repeat-x;*/
 	text-align: left;
 }
 
@@ -316,7 +308,7 @@ on my "contact us" form */
 	color: #1c3f95;
 }
 
-
+/* styling for date and time entry widgets */
 .ui-datepicker 
 {
 			background: #D1E0FF;

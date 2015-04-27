@@ -1,3 +1,4 @@
+<!-- Hilary Hastings, April 2015, code references www.stackexchange.com, www.w3c.schools.com -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -11,6 +12,7 @@
 	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 	<script src="js/jquery.ui.timepicker.js"></script>	
 	<script>
+	/* widgets for date and time entry from jquery and trentrichards.com*/
 		$(document).ready(function(){
 			$( "#datepicker" ).datepicker();
 			$('#timepicker').timepicker();
@@ -29,6 +31,7 @@
 	<th></th><th><th></th></th><th>Done?</th>
 	
 	<?php
+		//initialise database connection parameters
 		$servername = "mysql.abdn.ac.uk";
 		$username = "t02hah14_sistech";
 		$password = "sistech";
@@ -41,12 +44,7 @@
 		if ($conn->connect_error) {
 		die("Connection failed: " . $conn->connect_error);
 		}
-		/*
-		$sql = "SELECT rem_table_key, uid, reminder_date, reminder_time_by, reminder_text, reminder_task_completed FROM reminders
-		WHERE s_uid =$userid AND reminder_task_completed =0
-		ORDER BY reminder_time_by
-		LIMIT 0 , 30";
-		*/
+		/* retrieve tasks for this supported individual from database */
 		$sql = "SELECT rem_table_key, uid, reminder_date, reminder_time_by, reminder_text, reminder_task_completed FROM reminders
 		WHERE s_uid =$userid
 		ORDER BY reminder_date ASC , reminder_time_by ASC
@@ -83,6 +81,7 @@
 	
 	<form name="reminders" method="post" onsubmit=""
 		action="writeReminder.php"> 
+		<!-- form on left hand side of screen for viewing and entering reminders, displayed as "ticked" when complete  -->
 		<fieldset><div class="blurbheader"><br/>Type In A New Reminder Here</div>
 			<div class="datetimecontainer">
 				<br/><br/><label for="date">Date:</label><input type="text" id="datepicker" name="reminder_date" size="8"/>
@@ -94,7 +93,6 @@
 				<input type="submit" class="submitreset" id="submit" name="submit" value="Add Reminder"/>
 				<input type="reset" class="submitreset" id ="reset" name="reset" value="Reset"/>
 			</div> <!--lower-->
-
 	</form> 
 
 	</div> <!-- end blurbcontainerleft -->
@@ -105,6 +103,7 @@
 	 <th></th>
 	 
 	 <?php
+			// get messages from database for this supported individual
 	        $sql = "SELECT message_stream, message_type, s_uid, uid, message_number, image_message_path, typed_message_text, message_time, message_date
               FROM messages 
 			  WHERE s_uid = 1 
@@ -133,6 +132,7 @@
    
    <form name="message" method="post" onsubmit=""
 		action="writeMessage.php"> 
+		<!-- form on right hand side of screen to display messages between supported individual and supporter -->
 		<fieldset><div class="blurbheader"><br/>Type in a new message here</div>
 			<br/><textarea name="message_text" id="message_text" rows="8" cols="33"></textarea><br/>			
 			<input type="submit" class="submitreset" id="submit" name="submit" value="Add Message"/>

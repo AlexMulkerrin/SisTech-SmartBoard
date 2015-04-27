@@ -1,5 +1,8 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
+<!-- Initial HTML Code by Taofik Babtunde Mustapha. Converted to php and styled by Hilary Hastings, April 2015.
+ code references www.stackexchange.com, www.w3c.schools.com -->
+
 <html xmlns="http://www.w3.org/1999/xhtml">
    <head>
 	<title>sistech sign-in</title>
@@ -21,6 +24,7 @@
 		action="supportedindividualpage.php"> 
 		<div class="blurbheaderright">Sign-In Here</div>
 		<div align="right"><fieldset>
+			<!-- form for username and password. Skeleton for prototype, no database writes at present -->
 			<label for="username">Username:</label><input type="text" id="username" name="username"></br>
 			<label for="password">Password:</label><input type="password" id="password" name="password"></br>
 			<div id="lower">
@@ -32,7 +36,6 @@
 	   <?php include "footer.php"?>
 	  </div> <!-- content container -->
 
-	
 	
 	 </div> <!-- inner container -->
 	</center></div> <!-- container -->

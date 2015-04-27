@@ -1,5 +1,7 @@
+// Hilary Hastings, April 2015, reference sources www.php.net and www.w3c.schools.com/php
 <?php
 if ($_POST){
+//format date, time and text of reminder
 $reminder_date=stripslashes($_POST['reminder_date']);
 $reminder_time=stripslashes($_POST['reminder_time']);
 $reminder_text=stripslashes($_POST['reminder_text']);
@@ -7,6 +9,7 @@ $date_date = date('Ymd', strtotime($reminder_date));
 $reminder_time=str_replace(":", "", $reminder_time);
 $time_time=(int)$reminder_time;
 $time_time*=100;
+//set up database parameters
 $servername = "mysql.abdn.ac.uk";
 $username = "t02hah14_sistech";
 $password = "sistech";

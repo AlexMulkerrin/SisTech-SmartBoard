@@ -1,10 +1,11 @@
+// Hilary Hastings, April 2015, reference sources www.php.net and www.w3c.schools.com/php
 <?php
 if ($_POST){
-
+//format date
 $message_text=stripslashes($_POST['message_text']);
 $message_date=date(YYYYMMDD);
 $message_time=date("H:i");
-
+//initialise database parameters
 $servername = "mysql.abdn.ac.uk";
 $port = 3306;
 $username = "t02hah14_sistech";
@@ -29,6 +30,7 @@ if ($conn->query($sql) === TRUE) {
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
+//close connection
 $conn->close();
 }
 //return to calling php page

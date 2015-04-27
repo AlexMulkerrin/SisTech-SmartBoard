@@ -1,3 +1,4 @@
+<!-- DEFUNCT -->
 <?php
 if ($_POST){
 $reminder_date=stripslashes($_POST['reminder_date']);
