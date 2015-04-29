@@ -29,6 +29,7 @@ Source containing:
 * directory for the mySQL database code
 * directory for the Smartboard prototype software
 * directory for the webPortal php and mySQL code
+
 ## Deployment and Usage THIS NEEDS TO BE FINALISED AT DRY RUN (HH 29TH)
 To deploy and use, you will need:
 1.  a Java IDE (Netbeans or Eclipse) to run the Java Client 
