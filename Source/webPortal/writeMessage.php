@@ -1,9 +1,10 @@
-// Hilary Hastings, April 2015, reference sources www.php.net and www.w3c.schools.com/php
 <?php
+// Hilary Hastings, April 2015, reference sources www.php.net and www.w3c.schools.com/php
 if ($_POST){
 //format date
 $message_text=stripslashes($_POST['message_text']);
-$message_date=date(YYYYMMDD);
+$message_date=date("Ymd");
+//$date_date = date('Ymd', strtotime($message_date));
 $message_time=date("H:i");
 //initialise database parameters
 $servername = "mysql.abdn.ac.uk";
@@ -22,8 +23,8 @@ if ($conn->connect_error) {
 }
 
 // Already connected so just insert new reminder
-$sql = "INSERT INTO messages (uid, message_stream, message_date, message_time, typed_message_text, s_uid)
-		VALUES (1, 1, '$message_date', '$message_time', '$message_text', 1) ";
+$sql = "INSERT INTO messages (uid, message_stream, message_date, message_time, message_type, typed_message_text, s_uid)
+		VALUES (1, 1, '$message_date', '$message_time', 'T','$message_text', 1) ";
 
 if ($conn->query($sql) === TRUE) {
     //do nothing

@@ -1,5 +1,5 @@
-// Hilary Hastings, April 2015, reference sources www.php.net and www.w3c.schools.com/php
 <?php
+// Hilary Hastings, April 2015, reference sources www.php.net and www.w3c.schools.com/php
 if ($_POST){
 //format date, time and text of reminder
 $reminder_date=stripslashes($_POST['reminder_date']);
