@@ -33,13 +33,17 @@ Source containing:
 ## Deployment and Usage THIS NEEDS TO BE FINALISED AT DRY RUN (HH 29TH)
 To deploy and use, you will need:
 
-1. a Java IDE (Netbeans or Eclipse) to run the Java Client 
+1. The Smartboard Interface can be run by using the 'sistech' jar file in \Source\Prototype\Sistech\dist
+1b. or the Netbeans project file can be loaded and run
 2. a MySQL account
 3. to publish the php web-pages 
 4. to apply the workarounds 
 
 1)
-The Sistech smartboard interface can be used by downloading the prototype directory and running the Netbeans project file called Sistech inside. The proect requires the mysql libraries which are contained in the mysql-connector-java-5.0.8 On loading the project file Netbeans will report a missing library which is fixed by giving the path to the jar file in this directory.
+to run \Source\Prototype\Sistech\dist\sistech.jar you will need Java installed. The program was designed with the University's desktop machines in mind with touch sensitive widescreens. The interface is also compatible with mouse controls.
+
+1b)
+The Sistech smartboard interface can be used by downloading the prototype directory and running the Netbeans project file called Sistech inside. The project requires the mysql libraries which are contained in the mysql-connector-java-5.0.8 On loading the project file Netbeans will report a missing library which is fixed by giving the path to the jar file in this directory.
 
 2)
 Access to the database requires a University MySQL account and specifically granted access privileges (email hilary.hastings.14@aberdeen.ac.uk if required).
