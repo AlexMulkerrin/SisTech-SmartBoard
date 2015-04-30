@@ -56,6 +56,8 @@ published to your own University Homepages using
 homepages.abdn.ac.uk/local/publish 
 script and entering your username and password. 
 
+You will also need to copy the sistech.jar file and "lib" directory to your publication location. 
+
 4a)
 Due to the University web-publishing and sys-admin facilities for students, the uploading of handwritten messages as images is not straight through at present. Basically, the supported user writes their message on the Client screen. This is stored as a ".jpg" which is then displayed on the WebPortal Page. Under present University provisions for student produced web pages, all images have to be "published" before they will display on the WebPortal page. This just changes the permissions on them so they are available to the outside world e.g. our WebPortal page. We cannot run our Java Client as sys admin on the University Network  (workaround 1) and have been unable to secure some dedicated server space (workaround 2). Workaround 3 (Wizard of Oz): 
 Use the University's homepages.abdn.ac.uk/local/publish script, enter username and password. This enables the image file containing the handwritten message to be displayed on the portal page over the web. 
